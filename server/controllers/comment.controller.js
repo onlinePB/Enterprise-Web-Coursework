@@ -80,10 +80,15 @@ const remove = async(req, res) => {
     }
 }
 
+const read = (req, res) => {
+    return res.json(req.usercomment)
+  }
+
 export default {
     create,
     getAllComments,
     getCommentByID,
     update,
-    remove
+    remove,
+    read
 }
