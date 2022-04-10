@@ -1,10 +1,10 @@
-import Comment from '../models/comment.model'
+import Comments from '../models/comment.model'
 import extend from 'lodash/extend'
 import errorHandler from './../helpers/dbErrorHandler'
 
 // Creates a new comemnt
 const create = async (req, res) => {
-    const comment = new Comment(req.body)
+    const comment = new Comments(req.body)
 
     try {
         await comment.save()
@@ -21,7 +21,7 @@ const create = async (req, res) => {
 
 const getAllComments = async(req, res) => {
     try{
-        let commentsList = await Comment.find().select('message')
+        let commentsList = await Comments.find().select('_id message author created replyTo')
         res.join(commentsList)
 
     } catch(err) {
