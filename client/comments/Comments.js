@@ -106,7 +106,7 @@ export default function Comments() {
                             <Card>
                                 <CardContent>
                                     <Typography className={classes.title} color="textSecondary" gutterBottom>
-                                        By: {item.authorName} on {item.created}
+                                        By: {item.authorName} on {new Date(item.created).toDateString()}
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         {item.message}
