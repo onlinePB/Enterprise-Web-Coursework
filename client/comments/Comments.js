@@ -20,6 +20,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import auth from './../auth/auth-helper'
 import TextField from '@material-ui/core/TextField'
+import {create} from './api-comments.js'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -62,18 +63,19 @@ export default function Comments() {
     }
 
     const clickSubmit = () => {
-        const user = {
-          message: values.message || undefined
+        const comment = {
+          message: values.message || undefined,
+          author: auth.isAuthenticated().user._id
         }
-        /*
-        create(user).then((data) => {
+        
+        create(comment).then((data) => {
           if (data.error) {
             setValues({ ...values, error: data.error})
           } else {
             setValues({ ...values, error: '', open: true})
           }
         })
-        */
+        
       }
 
     return (
