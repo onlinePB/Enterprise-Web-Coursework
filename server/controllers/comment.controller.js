@@ -30,11 +30,26 @@ const getCommentByID = async(req, res, next, id) => {
             })
         }
 
-        req.message = comment
+        req.usercomment = comment
         next()
     } catch (err) {
         return res.status('400').json({
             error: "Could not retrieve comment"
+        })
+    }
+}
+
+const update = async(req, res) => {
+    try{
+        let comment = req.usercomment
+        comment = extend(comment, req.body)
+        comment.lastUpdate = Date.now()
+
+        await comment.save()
+        res.json(comment)
+    } catch (err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
         })
     }
 }

@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const CommentSchema = new mongoose.Schema({
     // Comment body - the message contained in the comment
-    body:{
+    message:{
         type: String,
         trim: true,
         required: "A message is required."
@@ -15,7 +15,13 @@ const CommentSchema = new mongoose.Schema({
     },
 
     // The date the comment was created on
-    date:{
+    created:{
+        type: Date,
+        default: Date.now,
+    },
+
+    // The date of the last edit to the comment
+    lastUpdate:{
         type: Date,
         default: Date.now,
     },
