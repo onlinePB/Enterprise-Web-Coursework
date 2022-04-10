@@ -21,7 +21,7 @@ const create = async (req, res) => {
 
 const list = async(req, res) => {
     try{
-        let commentsList = await Comments.find().select('_id message author created replyTo')
+        let commentsList = await Comments.find().select('_id message author replyTo created')
         res.join(commentsList)
 
     } catch(err) {
