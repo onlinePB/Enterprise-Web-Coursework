@@ -32,6 +32,12 @@ const CommentSchema = new mongoose.Schema({
         trim: true,
         default: "root",
     },
+
+    authorName:{
+        type: String,
+        trim: true,
+        required: "An author's name is required."
+    }
 })
 
 const commentModel = mongoose.model('Comments', CommentSchema);

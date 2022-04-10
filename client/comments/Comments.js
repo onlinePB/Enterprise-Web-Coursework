@@ -40,7 +40,8 @@ export default function Comments() {
   const [comments, setComments] = useState([])
   const [values, setValues] = useState({
     message: '',
-    author: ''
+    author: '',
+    authorName: ''
     })
   useEffect(() => {
     const abortController = new AbortController()
@@ -66,7 +67,8 @@ export default function Comments() {
     const clickSubmit = () => {
         const comment = {
           message: values.message || undefined,
-          author: auth.isAuthenticated().user._id || undefined
+          author: auth.isAuthenticated().user._id || undefined,
+          authorName: auth.isAuthenticated().user.name || undefined
         }
         
         create(comment, {t: auth.isAuthenticated().token}).then((data) => {
