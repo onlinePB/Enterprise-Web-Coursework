@@ -32,10 +32,14 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+
+
 export default function Comments() {
   const classes = useStyles()
   const [comments, setComments] = useState([])
-
+  const [values, setValues] = useState({
+    message: ''
+    })
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -95,7 +99,7 @@ export default function Comments() {
                     <Typography variant="h6" className={classes.title}>
                         Comment
                     </Typography>
-                    <TextField id="message" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
+                    <TextField id="message" label="Name" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"/><br/>
                 </CardContent>
                 <CardActions>
                     <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
