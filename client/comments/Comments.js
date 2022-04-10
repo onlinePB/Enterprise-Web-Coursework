@@ -54,38 +54,44 @@ export default function Comments() {
 
 
     return (
-      <Paper className={classes.root} elevation={4}>
-        <Typography variant="h6" className={classes.title}>
-          Comments
-        </Typography>
-        <List dense>
-            {comments.map((item, i) => {
-                return (
-                    <>
-                        <Card>
-                            <CardContent>
-                                <Typography variant="body2" color="text.secondary">
-                                    {item.message}
-                                </Typography>
-                            </CardContent>
+        <>
+        <Paper className={classes.root} elevation={4}>
+            <Typography variant="h6" className={classes.title}>
+            Comments
+            </Typography>
+            <List dense>
+                {comments.map((item, i) => {
+                    return (
+                        <>
+                            <Card>
+                                <CardContent>
+                                    <Typography variant="body2" color="text.secondary">
+                                        {item.message}
+                                    </Typography>
+                                </CardContent>
 
-                            {auth.isAuthenticated() &&
-                                <CardActions>
-                                    <Button size="small">Reply</Button>
+                                {auth.isAuthenticated() &&
+                                    <CardActions>
+                                        <Button size="small">Reply</Button>
 
-                                    
-                                    {auth.isAuthenticated().user._id == item.author &&
-                                        <Button size="small">Edit</Button>                    
-                                    }
-                                    
-                                </CardActions>
-                            }   
-                        </Card>
-                    </>
-                )     
-            })
-        }
-        </List>
-      </Paper>
+                                        
+                                        {auth.isAuthenticated().user._id == item.author &&
+                                            <Button size="small">Edit</Button>                    
+                                        }
+                                        
+                                    </CardActions>
+                                }   
+                            </Card>
+                        </>
+                    )     
+                })
+            }
+            </List>
+        </Paper>
+
+        <Paper className={classes.root} elevation={4}>
+            
+        </Paper>
+        </>
     )
 }
