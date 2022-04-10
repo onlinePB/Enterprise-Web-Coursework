@@ -19,7 +19,7 @@ const create = async (req, res) => {
     }
 }
 
-const getAllComments = async(req, res) => {
+const list = async(req, res) => {
     try{
         let commentsList = await Comments.find().select('_id message author created replyTo')
         res.join(commentsList)
@@ -87,7 +87,7 @@ const read = (req, res) => {
 
 export default {
     create,
-    getAllComments,
+    list,
     getCommentByID,
     update,
     remove,
