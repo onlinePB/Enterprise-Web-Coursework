@@ -33,7 +33,7 @@ const list = async (req, res) => {
 // Searches for a comment by its ID
 const getCommentByID = async(req, res, next, id) => {
     try{
-        let comment = await Comment.findById(id)
+        let comment = await Comments.findById(id)
 
         if(!comment){
             return res.status('400').json({
