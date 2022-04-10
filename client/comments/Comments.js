@@ -69,7 +69,7 @@ export default function Comments() {
           author: auth.isAuthenticated().user._id || undefined
         }
         
-        create(comment).then((data) => {
+        create({t: auth.isAuthenticated().token}, comment).then((data) => {
           if (data.error) {
             setValues({ ...values, error: data.error})
           } else {

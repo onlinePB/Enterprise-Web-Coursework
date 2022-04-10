@@ -10,13 +10,14 @@
     }
   }
 
-  const create = async (comment) => {
+  const create = async (comment, creds) => {
     try {
         let response = await fetch('/api/comments/', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + creds.t
           },
           body: JSON.stringify(comment)
         })
