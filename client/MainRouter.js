@@ -10,12 +10,15 @@ import Profile from './user/Profile'
 import EditProfile from './user/EditProfile'
 import UserAdmin from './user/UsersAdmin'
 
+import Comments from './comments/Comments'
+
 const MainRouter = () => {
     return (<div>
       <Menu/>
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route path="/users" component={Users}/>
+        <Route path="/comments" component={Comments}/>
         <Route path="/signup" component={Signup}/>
         <Route path="/signin" component={Signin}/>
         <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
