@@ -7,7 +7,7 @@ const CommentSchema = new mongoose.Schema({
         trim: true,
         required: "A message is required."
     },
-    /*
+
     // The author of the comment's user ID
     author:{
         type: String,
@@ -32,7 +32,6 @@ const CommentSchema = new mongoose.Schema({
         trim: true,
         default: "root",
     },
-    */
 })
 
 const commentModel = mongoose.model('Comments', CommentSchema);
