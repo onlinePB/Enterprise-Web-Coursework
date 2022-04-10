@@ -16,3 +16,5 @@ router.route('/api/comments/:commentID')
 router.param('commentID', commentCtrl.getCommentByID)
 
 //TODO add routes for comments by user
+
+export default router
