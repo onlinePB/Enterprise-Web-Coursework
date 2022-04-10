@@ -105,9 +105,17 @@ export default function Comments() {
                         <>
                             <Card>
                                 <CardContent>
+                                    <Typography className={classes.title} color="textSecondary" gutterBottom>
+                                        By: {item.authorName} on {item.created}
+                                    </Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         {item.message}
                                     </Typography>
+                                    {item.lastUpdate != null &&
+                                    <Typography className={classes.pos} color="textSecondary">
+                                        Last updated: {item.lastUpdate}
+                                    </Typography>
+                                    }
                                 </CardContent>
 
                                 {auth.isAuthenticated() &&
