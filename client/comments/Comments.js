@@ -80,7 +80,7 @@ export default function Comments() {
         
       }
 
-    const deleteComment = (commentID) => {
+    function deleteComment(commentID){
         remove(commentID, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) =>{
             if (data.error) {
                 setValues({ ...values, error: data.error})
@@ -116,7 +116,7 @@ export default function Comments() {
                                         {auth.isAuthenticated().user._id == item.author &&
                                             <>
                                                 <Button size="small">Edit</Button>   
-                                                <Button size="small" onClick={deleteComment(item._id)}>Delete</Button> 
+                                                <Button size="small" onClick={() => this.deleteComment(item._id)}>Delete</Button> 
                                             </>                   
                                         }
 
