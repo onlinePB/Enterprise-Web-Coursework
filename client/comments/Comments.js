@@ -53,13 +53,10 @@ export default function Comments() {
           Comments
         </Typography>
         <List dense>
-         {comments.map((item, i) => {
-          return    <ListItem>
-                      <ListItemText primary={item._id}/>
-                    </ListItem>
-                
-               })
-             }
+            {comments.map((item, i) => {
+                return <ListItemText primary={item.message}/>          
+            })
+        }
         </List>
       </Paper>
     )
