@@ -88,10 +88,25 @@ export default function Comments() {
             }
             </List>
         </Paper>
-
-        <Paper className={classes.root} elevation={4}>
-            
-        </Paper>
-        </>
+        {auth.isAuthenticated() && <>
+            <Card className={classes.card}>
+                <CardContent>
+                    <Typography variant="h6" className={classes.title}>
+                        Comment
+                    </Typography>
+                    <TextField id="message" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
+                    
+                    <br/> {
+                        values.error && (<Typography component="p" color="error">
+                        <Icon color="error" className={classes.error}>error</Icon>
+                        {values.error}</Typography>)
+                    }
+                </CardContent>
+                    <CardActions>
+                    <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
+                </CardActions>
+            </Card>
+        </>}
+       </>
     )
 }
