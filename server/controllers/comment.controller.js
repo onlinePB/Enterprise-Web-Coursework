@@ -19,6 +19,17 @@ const create = async (req, res) => {
     }
 }
 
+const getAllComments = async(req, res) => {
+    try{
+        let comments = await Comment.find().select('message author created lastUpdate replyTo')
+        res.join(comments)
+    } catch(err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        })
+    }
+}
+
 // Searches for a comment by its ID
 const getCommentByID = async(req, res, next, id) => {
     try{
