@@ -96,14 +96,8 @@ export default function Comments() {
                         Comment
                     </Typography>
                     <TextField id="message" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
-                    
-                    <br/> {
-                        values.error && (<Typography component="p" color="error">
-                        <Icon color="error" className={classes.error}>error</Icon>
-                        {values.error}</Typography>)
-                    }
                 </CardContent>
-                    <CardActions>
+                <CardActions>
                     <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
                 </CardActions>
             </Card>
