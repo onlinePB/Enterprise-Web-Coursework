@@ -8,12 +8,17 @@ const CommentSchema = new mongoose.Schema({
         required: "A message is required."
     },
 
-    // The author of the comment's user ID
+    // The author of the comment's username
     author:{
         type: String,
         trim: true,
     },
 
+    // The author of the comment's user ID
+    authorID:{
+        type: String,
+        trim: true,
+    },
     
     // The date the comment was created on
     created:{
