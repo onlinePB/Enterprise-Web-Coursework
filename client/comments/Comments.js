@@ -13,6 +13,10 @@ import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import {Link} from 'react-router-dom'
 import {list} from './api-comments.js'
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import auth from './../auth/auth-helper'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -54,7 +58,25 @@ export default function Comments() {
         </Typography>
         <List dense>
             {comments.map((item, i) => {
-                return <ListItemText primary={item.message}/>          
+                return (
+                    <>
+                        <Card>
+                            <CardContent>
+                                <Typography variant="body2" color="text.secondary">
+                                    item.message
+                                </Typography>
+                            </CardContent>
+
+                            <CardActions>
+                                <Button size="small">Reply</Button>
+                                {auth.isAuthenticated().user._id == item.author &&
+                                    <Button size="small">Edit</Button>                    
+                                }
+                                
+                            </CardActions>
+                        </Card>
+                    </>
+                )     
             })
         }
         </List>
