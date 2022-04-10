@@ -69,15 +69,17 @@ export default function Comments() {
                                 </Typography>
                             </CardContent>
 
-                            <CardActions>
-                                <Button size="small">Reply</Button>
+                            {auth.isAuthenticated() &&
+                                <CardActions>
+                                    <Button size="small">Reply</Button>
 
-                                // If the current user is the author of the comment, allow them to edit
-                                {auth.isAuthenticated().user._id == item.author &&
-                                    <Button size="small">Edit</Button>                    
-                                }
-                                
-                            </CardActions>
+                                    
+                                    {auth.isAuthenticated().user._id == item.author &&
+                                        <Button size="small">Edit</Button>                    
+                                    }
+                                    
+                                </CardActions>
+                            }   
                         </Card>
                     </>
                 )     
