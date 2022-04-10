@@ -72,7 +72,7 @@ const remove = async(req, res) => {
         let comment = req.usercomment
         let deletedComment = await comment.remove()
         
-        res.join(deletedComment)
+        res.json(deletedComment)
     } catch (err) {
         console.log(err)
         return res.status(400).json({
