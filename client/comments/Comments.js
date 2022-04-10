@@ -13,9 +13,10 @@ import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import {Link} from 'react-router-dom'
 import {list} from './api-comments.js'
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 import auth from './../auth/auth-helper'
 
 const useStyles = makeStyles(theme => ({
@@ -69,6 +70,8 @@ export default function Comments() {
 
                             <CardActions>
                                 <Button size="small">Reply</Button>
+
+                                // If the current user is the author of the comment, allow them to edit
                                 {auth.isAuthenticated().user._id == item.author &&
                                     <Button size="small">Edit</Button>                    
                                 }
