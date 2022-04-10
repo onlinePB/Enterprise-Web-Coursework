@@ -79,3 +79,11 @@ const remove = async(req, res) => {
         })
     }
 }
+
+export default {
+    create,
+    getAllComments,
+    getCommentByID,
+    update,
+    remove
+}
