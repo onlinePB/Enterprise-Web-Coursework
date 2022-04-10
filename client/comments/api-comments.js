@@ -27,10 +27,10 @@
     }
   }
 
-    /*
-  const remove = async (commentID, credentials) => {
+    
+  const remove = async (commentID, credentials, userID) => {
     try {
-      let response = await fetch('/api/comments/' + commentID, {
+      let response = await fetch('/api/comment/' + userID + "/" + commentID, {
         method: 'DELETE',
         headers: {
           'Accept': 'application/json',
@@ -43,11 +43,12 @@
       console.log(err)
     }
   }
-  */
+  
 
   
   export {
     list,
-    create
+    create,
+    remove
   }
   
