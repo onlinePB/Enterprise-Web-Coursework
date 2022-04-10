@@ -25,6 +25,7 @@ const list = async(req, res) => {
         res.join(commentsList)
 
     } catch(err) {
+        console.log(err)
         return res.status(400).json({
             error: errorHandler.getErrorMessage(err)
         })
