@@ -57,6 +57,9 @@ export default function Comments() {
     }
   }, [])
 
+    const handleChange = message => event => {
+        setValues({ ...values, [message]: event.target.value })
+    }
 
     return (
         <>
