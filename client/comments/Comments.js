@@ -105,6 +105,10 @@ export default function Comments() {
                                         {auth.isAuthenticated().user._id == item.author &&
                                             <Button size="small">Edit</Button>                    
                                         }
+
+                                        {(auth.isAuthenticated().user._id == item.author || auth.isAuthenticated().user.admin == true) &&
+                                            <Button size="small">Delete</Button>                    
+                                        }
                                         
                                     </CardActions>
                                 }   
