@@ -25,9 +25,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Users() {
+export default function Comments() {
   const classes = useStyles()
-  const [users, setUsers] = useState([])
+  const [comments, setComments] = useState([])
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -37,7 +37,7 @@ export default function Users() {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        setUsers(data)
+        setComments(data)
       }
     })
 
@@ -50,25 +50,14 @@ export default function Users() {
     return (
       <Paper className={classes.root} elevation={4}>
         <Typography variant="h6" className={classes.title}>
-          All Users
+          Comments
         </Typography>
         <List dense>
-         {users.map((item, i) => {
-          return <Link to={"/user/" + item._id} key={i}>
-                    <ListItem button>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <Person/>
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary={item.name}/>
-                      <ListItemSecondaryAction>
-                      <IconButton>
-                          <ArrowForward/>
-                      </IconButton>
-                      </ListItemSecondaryAction>
+         {comments.map((item, i) => {
+          return    <ListItem>
+                      <ListItemText primary={item.message}/>
                     </ListItem>
-                 </Link>
+                
                })
              }
         </List>
