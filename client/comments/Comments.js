@@ -112,12 +112,12 @@ export default function Comments() {
             </List>
         </Paper>
         {auth.isAuthenticated() && <>
-            <Card className={classes.card}>
+            <Card className={classes.card} elevation={4}>
                 <CardContent>
                     <Typography variant="h6" className={classes.title}>
-                        Comment
+                        Leave a comment!
                     </Typography>
-                    <TextField id="message" label="Name" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"/><br/>
+                    <TextField multiline id="message" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"/><br/>
                 </CardContent>
                 <CardActions>
                     <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
