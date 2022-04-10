@@ -21,8 +21,9 @@ const create = async (req, res) => {
 
 const getAllComments = async(req, res) => {
     try{
-        let comments = await Comment.find().select('_id message author created replyTo')
+        let comments = await comments.find().select('_id message author created replyTo')
         res.join(comments)
+
     } catch(err) {
         return res.status(400).json({
             error: errorHandler.getErrorMessage(err)
