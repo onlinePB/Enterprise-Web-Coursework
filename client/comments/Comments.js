@@ -20,7 +20,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import auth from './../auth/auth-helper'
 import TextField from '@material-ui/core/TextField'
-import {create} from './api-comments.js'
+import {create, remove} from './api-comments.js'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -53,7 +53,7 @@ export default function Comments() {
         setComments(data)
       }
     })
-    console.log("admin? - " + auth.isAuthenticated().user)
+
     return function cleanup(){
       abortController.abort()
     }
@@ -80,6 +80,10 @@ export default function Comments() {
         
       }
 
+    const deleteComment = (commentID) => {
+        
+    }
+
     return (
         <>
         <Paper className={classes.root} elevation={4}>
@@ -103,12 +107,12 @@ export default function Comments() {
 
                                         
                                         {auth.isAuthenticated().user._id == item.author &&
-                                            <Button size="small">Edit</Button>                    
+                                            <>
+                                                <Button size="small">Edit</Button>   
+                                                <Button size="small" onClick={deleteComment(item._id)}>Delete</Button> 
+                                            </>                   
                                         }
 
-                                        {(auth.isAuthenticated().user._id == item.author || auth.isAuthenticated().user.admin == true) &&
-                                            <Button size="small">Delete</Button>                    
-                                        }
                                         
                                     </CardActions>
                                 }   
