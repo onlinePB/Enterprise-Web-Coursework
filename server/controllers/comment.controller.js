@@ -74,6 +74,7 @@ const remove = async(req, res) => {
         
         res.join(deletedComment)
     } catch (err) {
+        console.log(err)
         return res.status(400).json({
             error: errorHandler.getErrorMessage(err)
         })
