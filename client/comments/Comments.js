@@ -65,7 +65,7 @@ export default function Comments() {
                         <Card>
                             <CardContent>
                                 <Typography variant="body2" color="text.secondary">
-                                    item.message
+                                    {item.message}
                                 </Typography>
                             </CardContent>
 
