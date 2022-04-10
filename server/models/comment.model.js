@@ -7,13 +7,14 @@ const CommentSchema = new mongoose.Schema({
         trim: true,
         required: "A message is required."
     },
-
+    /*
     // The author of the comment's user ID
     author:{
         type: String,
         trim: true,
     },
 
+    
     // The date the comment was created on
     created:{
         type: Date,
@@ -31,7 +32,7 @@ const CommentSchema = new mongoose.Schema({
         trim: true,
         default: "root",
     },
-
+    */
 })
 
 const commentModel = mongoose.model('Comments', CommentSchema);
