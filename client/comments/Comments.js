@@ -81,7 +81,7 @@ export default function Comments() {
       }
 
     const deleteComment = (commentID) => {
-        remove(comment, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) =>{
+        remove(commentID, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) =>{
             if (data.error){
                 console.log("error deleting comment")
             }
