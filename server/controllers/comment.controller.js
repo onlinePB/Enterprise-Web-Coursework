@@ -39,6 +39,7 @@ const getCommentByID = async(req, res, next, id) => {
     }
 }
 
+// Updates a comment
 const update = async(req, res) => {
     try{
         let comment = req.usercomment
@@ -54,6 +55,7 @@ const update = async(req, res) => {
     }
 }
 
+// Deletes a comment
 const remove = async(req, res) => {
     try{
         let comment = req.usercomment
