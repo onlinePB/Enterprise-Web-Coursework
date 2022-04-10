@@ -19,18 +19,16 @@ const create = async (req, res) => {
     }
 }
 
-const list = async(req, res) => {
-    try{
-        let commentsList = await Comments.find().select('_id message author replyTo created')
-        res.join(commentsList)
-
-    } catch(err) {
-        console.log(err)
-        return res.status(400).json({
-            error: errorHandler.getErrorMessage(err)
-        })
+const list = async (req, res) => {
+    try {
+      let comment = await Comments.find().select('_id message author replyTo created')
+      res.json(comment)
+    } catch (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
     }
-}
+  }
 
 // Searches for a comment by its ID
 const getCommentByID = async(req, res, next, id) => {
