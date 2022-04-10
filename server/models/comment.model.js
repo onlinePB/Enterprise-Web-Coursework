@@ -28,3 +28,7 @@ const CommentSchema = new mongoose.Schema({
     },
 
 })
+
+const commentModel = mongoose.model('Comments', CommentSchema);
+commentModel.createIndexes();
+export default commentModel
