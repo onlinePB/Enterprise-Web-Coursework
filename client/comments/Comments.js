@@ -40,8 +40,7 @@ export default function Comments() {
   const [comments, setComments] = useState([])
   const [values, setValues] = useState({
     message: '',
-    author: '',
-    authorID: ''
+    author: ''
     })
   useEffect(() => {
     const abortController = new AbortController()
@@ -67,8 +66,7 @@ export default function Comments() {
     const clickSubmit = () => {
         const comment = {
           message: values.message || undefined,
-          authorID: auth.isAuthenticated().user._id || undefined,
-          author: auth.isAuthenticated().user.name || undefined
+          author: auth.isAuthenticated().user._id || undefined
         }
         
         create(comment, {t: auth.isAuthenticated().token}).then((data) => {
@@ -105,9 +103,6 @@ export default function Comments() {
                         <>
                             <Card>
                                 <CardContent>
-                                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                                    {item}
-                                </Typography>
                                     <Typography variant="body2" color="text.secondary">
                                         {item.message}
                                     </Typography>
@@ -118,7 +113,7 @@ export default function Comments() {
                                         <Button size="small">Reply</Button>
 
                                         
-                                        {auth.isAuthenticated().user._id == item.authorID &&
+                                        {auth.isAuthenticated().user._id == item.author &&
                                             <>
                                                 <Button size="small">Edit</Button>   
                                                 <Button size="small" onClick={() => deleteComment(item._id)}>Delete</Button> 
