@@ -55,7 +55,7 @@ export default function Comments() {
         <List dense>
          {comments.map((item, i) => {
           return    <ListItem>
-                      <ListItemText primary={item.message}/>
+                      <ListItemText primary={item._id}/>
                     </ListItem>
                 
                })
