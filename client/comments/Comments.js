@@ -61,6 +61,21 @@ export default function Comments() {
         setValues({ ...values, [message]: event.target.value })
     }
 
+    const clickSubmit = () => {
+        const user = {
+          message: values.message || undefined
+        }
+        /*
+        create(user).then((data) => {
+          if (data.error) {
+            setValues({ ...values, error: data.error})
+          } else {
+            setValues({ ...values, error: '', open: true})
+          }
+        })
+        */
+      }
+
     return (
         <>
         <Paper className={classes.root} elevation={4}>
