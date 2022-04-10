@@ -18,3 +18,23 @@ const create = async (req, res) => {
         })
     }
 }
+
+// Searches for a comment by its ID
+const getCommentByID = async(req, res, next, id) => {
+    try{
+        let comment = await Comment.findById(id)
+
+        if(!comment){
+            return res.status('400').json({
+                error: "Comment not found"
+            })
+        }
+
+        req.message = comment
+        next()
+    } catch (err) {
+        return res.status('400').json({
+            error: "Could not retrieve comment"
+        })
+    }
+}
