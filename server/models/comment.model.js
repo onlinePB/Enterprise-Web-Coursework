@@ -23,7 +23,6 @@ const CommentSchema = new mongoose.Schema({
     // The date of the last edit to the comment
     lastUpdate:{
         type: Date,
-        default: Date.now,
     },
 
     // What the comment is replying to. When set to "root", the comment is a top level comment.

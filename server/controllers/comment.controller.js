@@ -53,3 +53,16 @@ const update = async(req, res) => {
         })
     }
 }
+
+const remove = async(req, res) => {
+    try{
+        let comment = req.usercomment
+        let deletedComment = await comment.remove()
+        
+        res.join(deletedComment)
+    } catch (err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        })
+    }
+}
