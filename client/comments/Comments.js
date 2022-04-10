@@ -53,7 +53,7 @@ export default function Comments() {
         setComments(data)
       }
     })
-
+    console.log("admin? - " + auth.isAuthenticated().user.admin)
     return function cleanup(){
       abortController.abort()
     }
