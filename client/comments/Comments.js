@@ -116,7 +116,7 @@ export default function Comments() {
                                         {auth.isAuthenticated().user._id == item.author &&
                                             <>
                                                 <Button size="small">Edit</Button>   
-                                                <Button size="small" onClick={}>Delete</Button> 
+                                                <Button size="small" onClick={clickSubmit}>Delete</Button> 
                                             </>                   
                                         }
 
