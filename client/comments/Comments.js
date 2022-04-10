@@ -75,6 +75,7 @@ export default function Comments() {
           } else {
             setValues({ ...values, error: '', open: true})
           }
+          document.location.reload() //Reload the page so they can see their comment
         })
         
       }
