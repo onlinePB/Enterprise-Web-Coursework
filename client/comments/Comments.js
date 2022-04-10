@@ -70,6 +70,7 @@ export default function Comments() {
         }
         
         create({t: auth.isAuthenticated().token}, comment).then((data) => {
+            console.log(auth.isAuthenticated().token)
           if (data.error) {
             setValues({ ...values, error: data.error})
           } else {
