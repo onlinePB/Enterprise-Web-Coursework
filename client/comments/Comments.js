@@ -32,10 +32,6 @@ const useStyles = makeStyles(theme => ({
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle
   },
-
-  commentCard: {
-    mt: "10px"
-  }
 }))
 
 
@@ -108,7 +104,7 @@ export default function Comments() {
                 {comments.map((item, i) => {
                     return (
                         <>
-                            <Card className={classes.commentCard}>
+                            <Card sx={{mb: "10px"}}>
                             <CardHeader title={item.authorName} subheader={new Date(item.created).toDateString()} avatar={
                                 <Avatar aria-label="recipe" className={classes.avatar}>
                                     {item.authorName.charAt(0)}
