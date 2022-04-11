@@ -27,7 +27,6 @@ const MainRouter = () => {
         <Route path="/user/:userId" component={Profile}/>
         <Route path="/useradmin/:userId" component={UserAdmin}/>
         <Route path="/replies/:commentID" component={Replies}/>
-        <Route path="/shop" component={Shop}/>
       </Switch>
     </div>)
 }
