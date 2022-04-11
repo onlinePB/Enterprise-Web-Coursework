@@ -117,20 +117,19 @@ export default function Comments() {
                                     </Typography>          
                                 </CardContent>
 
-                                {auth.isAuthenticated() &&
+                      
                                     <CardActions>
                                         <Button component={Link} to={"/replies/" + item._id} size="small">Replies</Button>
 
-                                        
+                                        {auth.isAuthenticated() && <>
                                         {auth.isAuthenticated().user._id == item.author &&
                                             <>  
                                                 <Button size="small" onClick={() => deleteComment(item._id)}>Delete</Button> 
                                             </>                   
-                                        }
-
-                                        
+                                        }</>}  
+y  
                                     </CardActions>
-                                }   
+                                 
                             </Card>
                         </>
                     )     
