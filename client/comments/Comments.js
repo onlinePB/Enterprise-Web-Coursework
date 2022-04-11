@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   }),
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
-    color: theme.palette.openTitle
+    color: theme.palette.contrastText
   },
   commentCard: {
     margin: `0px 0px 10px 0px`
