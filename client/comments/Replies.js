@@ -176,7 +176,7 @@ export default function Replies({ match }){
                     <TextField multiline fullWidth id="message" variant="outlined" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "white" } }} InputLabelProps={{style : {color : 'white'} }}/><br/>
                 </CardContent>
                 <CardActions>
-                    <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
+                    <Button color="secondary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
                 </CardActions>
             </Card>
         </>}
