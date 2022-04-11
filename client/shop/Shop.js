@@ -88,15 +88,13 @@ export default function Shop() {
                         </ListItemAvatar>
                     <ListItemText primary={item.name} secondary={item.description} />
                     {auth.isAuthenticated() &&
-                    <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="basket" color="secondary" onClick={() => toggleBasket(item._id)}>
-                            {!basket.includes(item._id) &&
-                                <AddShoppingCartIcon/>
-                            }
-                            {basket.includes(item._id) &&
-                                <RemoveShoppingCartIcon />
-                            }
-                        </IconButton>
+                    <ListItemSecondaryAction>            
+                        {!basket.includes(item._id) &&
+                            <Button size="small" onClick={() => toggleBasket(item._id)}>Add to Basket</Button>
+                        }
+                        {basket.includes(item._id) &&
+                            <Button size="small" onClick={() => toggleBasket(item._id)}>Remove from Basket</Button>
+                        }                       
                     </ListItemSecondaryAction>
                     }
                     </ListItem>
