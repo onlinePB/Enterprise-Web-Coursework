@@ -60,7 +60,7 @@ export default function Users() {
         notAttending.push(item)
       }
     })
-    console.log("attending: " + attending.toString() + "\nNot: " + notAttending.toString())
+    console.log("attending: " + attending[0].title + "\nNot: " + notAttending[0].title)
 
     return (
         <Paper className={classes.root} elevation={4}>
