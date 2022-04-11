@@ -30,10 +30,12 @@ const useStyles = makeStyles(theme => ({
   
 }))
 
+
+
 export default function Shop() {
   const classes = useStyles()
   const [products, setProducts] = useState([])
-  const [basket, setBasket] = useState([])
+  const [basket, setBasket] = useState()
 
   useEffect(() => {
     const abortController = new AbortController()
