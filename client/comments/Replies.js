@@ -100,7 +100,7 @@ export default function Replies({ match }){
     }
 
 
-
+    console.log(comment.toString)
     return (<>
               <Card>
                 <CardHeader title={comment.authorName} subheader={new Date(comment.created).toDateString()} avatar={
