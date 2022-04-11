@@ -28,9 +28,34 @@ const list = async (req, res) => {
         error: errorHandler.getErrorMessage(err)
       })
     }
-  }
+}
+
+const read = (req, res) => {
+    return res.json(req.event)
+}
+
+const getEventByID = async(req, res, next, id) => {
+    try{
+        let event = await Events.findById(id)
+
+        if(!event){
+            return res.status('400').json({
+                error: "Event not found"
+            })
+        }
+
+        req.event = event
+        next()
+    } catch (err) {
+        return res.status('400').json({
+            error: "Could not retrieve event"
+        })
+    }
+}
 
 export default{
     create,
-    list
+    list,
+    read,
+    getEventByID
 }
