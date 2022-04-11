@@ -16,6 +16,19 @@ const create = async (req, res) => {
     }
   }
 
+
+const list = async (req, res) => {
+    try {
+      let shopItem = await ShopItem.find().select('_id name description stock')
+      res.json(shopItem)
+    } catch (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+}
+
 export default{
-    create
+    create,
+    list
 }
