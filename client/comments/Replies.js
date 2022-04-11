@@ -102,6 +102,20 @@ export default function Replies({ match }){
 
     console.log(comment)
     return (<>
+              <Card>
+                <CardHeader title={comment.authorName} subheader={new Date(comment.created).toDateString()} avatar={
+                    <Avatar aria-label="recipe" className={classes.avatar}>
+                        {comment.authorName.charAt(0)}
+                    </Avatar>
+                }/>
+                                    
+                <CardContent>
+                  <Typography variant="body2" color="text.secondary">
+                    {comment.message}
+                  </Typography>          
+                </CardContent>
+              </Card>
+              
         <Paper className={classes.root} elevation={4}>
             <Typography variant="h6" className={classes.title}>
             Replies
