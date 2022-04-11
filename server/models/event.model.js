@@ -29,7 +29,7 @@ const CommentSchema = new mongoose.Schema({
 
     attendees: {
         type: Array,
-        default: []
+        default: [""]
     }
 })
 
