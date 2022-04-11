@@ -74,6 +74,7 @@ const listReplies = async(commentID) => {
     list,
     create,
     remove,
-    listReplies
+    listReplies,
+    getComment
   }
   
