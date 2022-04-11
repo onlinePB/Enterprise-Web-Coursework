@@ -65,7 +65,7 @@ export default function Event({ match }){
           {event.description}
         </Typography>
       </Paper>
-      {auth.isAdmin() && <>
+      {auth.isAuthenticated() && <>
       <Card>
         <Button color="secondary" variant="contained" onClick={deleteEvent} className={classes.submit}>Delete</Button>
       </Card>
