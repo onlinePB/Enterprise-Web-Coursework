@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function Replies({ match }){
+export default function Event({ match }){
     const classes = useStyles()
     const [event, setEvent] = useState([])
 
@@ -50,7 +50,7 @@ export default function Replies({ match }){
     }, [])
 
 
-    console.log(comment)
+    console.log(event)
     return (
       <div><p>{event.description}</p></div>
     )
