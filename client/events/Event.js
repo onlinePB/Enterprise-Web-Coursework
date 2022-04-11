@@ -38,6 +38,7 @@ export default function Event({ match }){
     const classes = useStyles()
     const [event, setEvent] = useState([])
 
+    console.log("Admin? " + auth.isAdmin())
 
     useEffect(() => {
         getEvent(match.params.eventID).then((data) => {
