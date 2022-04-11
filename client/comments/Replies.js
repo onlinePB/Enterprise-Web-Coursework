@@ -105,7 +105,7 @@ export default function Replies({ match }){
               <Card>
                 <CardHeader title={comment.authorName} subheader={new Date(comment.created).toDateString()} avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
-                        {comment.authorName.charAt(0)}
+                        O
                     </Avatar>
                 }/>
                                     
@@ -115,7 +115,7 @@ export default function Replies({ match }){
                   </Typography>          
                 </CardContent>
               </Card>
-              
+
         <Paper className={classes.root} elevation={4}>
             <Typography variant="h6" className={classes.title}>
             Replies
