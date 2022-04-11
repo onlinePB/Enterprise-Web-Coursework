@@ -39,7 +39,7 @@ export default function Users() {
         console.log(data.error)
       } else {
         setEvents(data.sort(function(a, b){
-            return new Date(a.start) - new Date(b.start)
+            return new Date(b.start) - new Date(a.start)
         }))
       }
     })
