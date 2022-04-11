@@ -14,6 +14,7 @@ import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import {Link} from 'react-router-dom'
+import auth from './../auth/auth-helper'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -58,7 +59,7 @@ export default function NewEvent() {
       description: values.description
     }
 
-    create(event).then((data) => {
+    create(event, auth.isAuthenticated().token, auth.isAuthenticated().user._id).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error})
       } else {
