@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   commentCard: {
-    margin: "10px"
+    mt: "10px"
   }
 }))
 
