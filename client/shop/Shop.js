@@ -19,6 +19,7 @@ import Divider from '@material-ui/core/Divider';
 import auth from './../auth/auth-helper'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
