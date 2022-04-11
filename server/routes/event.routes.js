@@ -12,9 +12,6 @@ router.route('/api/events')
 router.route('/api/event/:eventID')
     .get(eventCtrl.read)
 
-router.route('/api/attending/:userID')
-    .get(eventCtrl.listByAttending)
-
 // Authenticated routes
 router.route('/api/events/:userID')
     .post(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.create)
