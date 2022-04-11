@@ -100,7 +100,7 @@ export default function Replies({ match }){
     }
 
 
-    console.log(comment.toString)
+    console.log(comment)
     return (<>
         <Paper className={classes.root} elevation={4}>
             <Typography variant="h6" className={classes.title}>
