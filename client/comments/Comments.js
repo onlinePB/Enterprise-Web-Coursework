@@ -111,25 +111,19 @@ export default function Comments() {
                                 </Avatar>
                             }/>
                                     
-                                
-                        
                                 <CardContent>
-                          
                                     <Typography variant="body2" color="text.secondary">
                                         {item.message}
-                                    </Typography>
-                                    
-                                    
+                                    </Typography>          
                                 </CardContent>
 
                                 {auth.isAuthenticated() &&
                                     <CardActions>
-                                        <Button size="small">Reply</Button>
+                                        <Button component={Link} to={"/replies/" + item._id} size="small">Replies</Button>
 
                                         
                                         {auth.isAuthenticated().user._id == item.author &&
-                                            <>
-                                                <Button size="small">Edit</Button>   
+                                            <>  
                                                 <Button size="small" onClick={() => deleteComment(item._id)}>Delete</Button> 
                                             </>                   
                                         }
