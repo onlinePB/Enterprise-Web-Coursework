@@ -30,7 +30,9 @@ const useStyles = makeStyles(theme => ({
   
 }))
 
-
+if(window.sessionStorage.getItem("basket") == undefined){
+    window.sessionStorage.setItem("basket", JSON.stringify([]))
+}
 
 export default function Shop() {
   const classes = useStyles()
@@ -61,7 +63,7 @@ export default function Shop() {
         basket.push(itemID)
     }
     window.sessionStorage.setItem("basket", JSON.stringify(basket))
-    console.log("Basket: " + basket.toString())
+    console.log("Basket: " + JSON.stringify(basket))
   }
 
 
