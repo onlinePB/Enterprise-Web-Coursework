@@ -38,7 +38,7 @@ export default function Shop() {
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
-    sessionStorage.setItem("basket", "please work")
+
     list(signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
@@ -52,8 +52,10 @@ export default function Shop() {
     }
   }, [])
 
-  /*
   function toggleBasket(itemID){
+      sessionStorage.setItem("basket", JSON.stringify([itemID]))
+
+/*
     if(sessionStorage.getItem("basket") !== null){
         let basket = JSON.parse(sessionStorage.getItem("basket"))
         if(basket.includes(itemID)){
@@ -68,7 +70,8 @@ export default function Shop() {
     
     
     console.log("Basket: " + basket.toString())
-  }*/
+    */
+  }
 
 
     return (
@@ -88,7 +91,7 @@ export default function Shop() {
                     <ListItemText primary={item.name} secondary={item.description} />
                     {auth.isAuthenticated() &&
                     <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="basket" color={basket.includes(item._id) ? "white" : "secondary"} onClick={() => toggleBasket(item._id)}>
+                        <IconButton edge="end" aria-label="basket" color="secondary" onClick={() => toggleBasket(item._id)}>
                             <AddShoppingCartIcon/>
                         </IconButton>
                     </ListItemSecondaryAction>
