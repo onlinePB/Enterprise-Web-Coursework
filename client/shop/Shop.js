@@ -50,6 +50,8 @@ export default function Shop() {
 
     if (sessionStorage.getItem("basket") === null){
         sessionStorage.setItem("basket", JSON.stringify([]))
+    } else {
+        basket = JSON.parse(sessionStorage.getItem("basket"))
     }
 
     return function cleanup(){
@@ -58,8 +60,6 @@ export default function Shop() {
   }, [])
 
   function toggleBasket(itemID){
-    basket = JSON.parse(sessionStorage.getItem("basket"))
-
     if (basket.includes(itemID)){
         basket.splice(basket.indexOf(itemID), 1)
     } else {
@@ -67,22 +67,6 @@ export default function Shop() {
     }
 
     sessionStorage.setItem("basket", JSON.stringify(basket))
-/*
-    if(sessionStorage.getItem("basket") !== null){
-        let basket = JSON.parse(sessionStorage.getItem("basket"))
-        if(basket.includes(itemID)){
-            basket.splice(basket.indexOf(itemID), 1)
-        } else {
-            basket.push(itemID)
-        }
-    } else {
-        let basket = [itemID]
-    }
-    sessionStorage.setItem("basket", JSON.stringify(basket))
-    
-    
-    console.log("Basket: " + basket.toString())
-    */
   }
 
 
