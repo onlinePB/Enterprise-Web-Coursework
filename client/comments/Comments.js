@@ -31,6 +31,10 @@ const useStyles = makeStyles(theme => ({
   }),
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
+    color: theme.palette.openTitle
+  },
+  commentTitle: {
+    margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: `#ffffff`
   },
   commentCard: {
@@ -104,7 +108,7 @@ export default function Comments() {
     return (
         <>
         <Paper className={classes.root} elevation={4}>
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant="h6" className={classes.commentTitle}>
             Comments
             </Typography>
             <List dense>
