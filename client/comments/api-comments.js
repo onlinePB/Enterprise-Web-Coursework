@@ -9,6 +9,18 @@
       console.log(err)
     }
 }
+
+const listReplies = async(commentID) => {
+    try{
+        let response = await fetch('/api/replies/' + commentID, {
+            method: 'GET',
+        })
+
+        return await response.json()
+    } catch(err) {
+        console.log(err)
+    }
+}
  
 
   const create = async (comment, creds) => {
