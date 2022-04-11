@@ -75,7 +75,7 @@ export default function Users() {
             <Typography variant="h6" className={classes.title}>
             Admin panel
             </Typography>
-            <Button component={Link} to={"/events/new"} color="secondary"  variant="contained" className={classes.submit}>New Event</Button>
+            <Button component={Link} to={"/new"} color="secondary"  variant="contained" className={classes.submit}>New Event</Button>
         </Paper>
         </>}
 

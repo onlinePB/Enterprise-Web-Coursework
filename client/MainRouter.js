@@ -31,7 +31,7 @@ const MainRouter = () => {
         <Route path="/replies/:commentID" component={Replies}/>
         <Route path="/events" component={Events}/>
         <Route path="/event/:eventID" component={Event}/>
-        <Route path="/events/new" component={NewEvent}/>
+        <Route path="/new" component={NewEvent}/>
       </Switch>
     </div>)
 }
