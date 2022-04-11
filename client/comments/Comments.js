@@ -41,7 +41,8 @@ const useStyles = makeStyles(theme => ({
     margin: `0px 0px 10px 0px`
   },
   inputBox: {
-    backgroundColor: theme.palette.primary.light
+    backgroundColor: theme.palette.primary.main,
+    color: `#ffffff`
   }
 }))
 
@@ -158,7 +159,7 @@ export default function Comments() {
                     <TextField multiline id="message" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"/><br/>
                 </CardContent>
                 <CardActions>
-                    <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
+                    <Button color="secondary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
                 </CardActions>
             </Card>
         </>}
