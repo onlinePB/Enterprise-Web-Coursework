@@ -55,7 +55,7 @@ export default function Event({ match }){
 
         read({
           userId: auth.isAuthenticated().user._id
-        }, {t: auth.isAuthenticated()}, signal).then((data) => {
+        }, {t: auth.isAuthenticated().token}, signal).then((data) => {
           if (data && data.error) {
             console.log("error")
           } else {
