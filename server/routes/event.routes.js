@@ -9,3 +9,5 @@ router.route('/api/events/:userID')
     .post(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.create)
 
 router.param('userID', userCtrl.userByID)
+
+export default router
