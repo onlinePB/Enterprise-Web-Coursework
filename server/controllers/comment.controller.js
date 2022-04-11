@@ -29,6 +29,7 @@ const list = async (req, res) => {
       })
     }
   }
+  
 
 // Searches for a comment by its ID
 const getCommentByID = async(req, res, next, id) => {
@@ -49,6 +50,18 @@ const getCommentByID = async(req, res, next, id) => {
         })
     }
 }
+
+const listReplies = async(req, res, commentID) => {
+    try{
+        let reply = await Comments.find({replyTo: commentID}).select('_id message author replyTo created authorName')
+        res.json(reply)
+    } catch (err) {
+        return res.status(400).json({
+          error: errorHandler.getErrorMessage(err)
+        })
+      }
+    }
+
 
 // Updates a comment
 const update = async(req, res) => {
@@ -91,5 +104,6 @@ export default {
     getCommentByID,
     update,
     remove,
-    read
+    read,
+    listReplies
 }

@@ -11,6 +11,7 @@ import EditProfile from './user/EditProfile'
 import UserAdmin from './user/UsersAdmin'
 
 import Comments from './comments/Comments'
+import Replies from './comments/Replies'
 
 const MainRouter = () => {
     return (<div>
@@ -24,6 +25,7 @@ const MainRouter = () => {
         <PrivateRoute path="/user/edit/:userId" component={EditProfile}/>
         <Route path="/user/:userId" component={Profile}/>
         <Route path="/useradmin/:userId" component={UserAdmin}/>
+        <Route path="/replies/:commentID" component={Replies}/>
       </Switch>
     </div>)
 }

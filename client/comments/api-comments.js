@@ -8,7 +8,8 @@
     } catch(err) {
       console.log(err)
     }
-  }
+}
+ 
 
   const create = async (comment, creds) => {
     try {

@@ -9,7 +9,9 @@ router.route('/api/comments')
     .get(commentCtrl.list)
     .post(authCtrl.requireSignin, commentCtrl.create)
 
-    
+router.route('/api/replies')
+    .get(commentCtrl.listReplies)
+
 router.route('/api/comment/:userID/:commentID')
     .get(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.read)
     .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.remove)
