@@ -10,6 +10,19 @@ const list = async (signal) => {
     }
 }
 
+const getProduct = async(productID) => {
+    try{
+        let response = await fetch('/api/product/' + productID, {
+            method: 'GET'
+        })
+        
+        return await response.json()
+    } catch(err) {
+        console.log(err)
+    }
+}
+
 export {
-    list
+    list,
+    getProduct
 }

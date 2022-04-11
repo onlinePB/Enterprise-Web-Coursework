@@ -33,7 +33,8 @@ const useStyles = makeStyles(theme => ({
 export default function Shop() {
   const classes = useStyles()
   const [products, setProducts] = useState([])
-
+  const [basket, setBasket] = useState([])
+  
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -50,6 +51,12 @@ export default function Shop() {
       abortController.abort()
     }
   }, [])
+
+  function toggleBasket(itemID){
+
+  }
+
+
     return (
       <Paper className={classes.root} elevation={4}>
         <Typography variant="h6" className={classes.title}>
@@ -67,7 +74,7 @@ export default function Shop() {
                     <ListItemText primary={item.name} secondary={item.description} />
                     {auth.isAuthenticated() &&
                     <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="basket" color="secondary">
+                        <IconButton edge="end" aria-label="basket" color="secondary" onClick={() => toggleBasket(item._id)}>
                             <AddShoppingCartIcon/>
                         </IconButton>
                     </ListItemSecondaryAction>
