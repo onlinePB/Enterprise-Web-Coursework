@@ -105,13 +105,14 @@ export default function Comments() {
                     return (
                         <>
                             <Card>
-                            <CardHeader title={item.authorName} subheader={new Date(item.created).toDateString()}>
-                                    <Avatar aria-label="recipe" className={classes.avatar}>
-                                        {item.authorName.charAt(0)}
-                                    </Avatar>
+                            <CardHeader title={item.authorName} subheader={new Date(item.created).toDateString()} avatar={
+                                <Avatar aria-label="recipe" className={classes.avatar}>
+                                    {item.authorName.charAt(0)}
+                                </Avatar>
+                            }/>
+                                    
                                 
-                                
-                                </CardHeader>
+                        
                                 <CardContent>
                           
                                     <Typography variant="body2" color="text.secondary">
