@@ -17,6 +17,11 @@ import {list} from './api-events'
 import Button from '@material-ui/core/Button'
 import auth from './../auth/auth-helper'
 import {read} from './../user/api-user'
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import {create} from './api-events'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -33,6 +38,10 @@ export default function Users() {
   const classes = useStyles()
   const [events, setEvents] = useState([])
   const [user, setUser] = useState({})
+  const [values, setValues] = useState({
+    title: '',
+    description: ''
+    })
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -63,11 +72,31 @@ export default function Users() {
     } else {
       setUser({"admin":false})
     }
-
     return function cleanup(){
       abortController.abort()
     }
   }, [])
+
+  const handleChange = message => event => {
+    setValues({ ...values, [message]: event.target.value })
+  }
+
+  const clickSubmit = () => {
+    const event = {
+      title: values.title || undefined,
+      description: values.description || undefined,
+    }
+    
+    create(event, {t: auth.isAuthenticated().token}, auth.isAuthenticated()).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error})
+      } else {
+        setValues({ ...values, error: '', open: true})
+      }
+      document.location.reload() //Reload the page so they can see their comment
+    })
+    
+  }
 
     return (<>
         {user.admin && <>
@@ -75,7 +104,18 @@ export default function Users() {
             <Typography variant="h6" className={classes.title}>
             Admin panel
             </Typography>
-            <Button component={Link} to={"/new"} color="secondary"  variant="contained" className={classes.submit}>New Event</Button>
+            <Card>
+                <CardContent>
+                    <Typography variant="h6">
+                        Create a new Event
+                    </Typography>
+                    <TextField fullWidth id="title" variant="outlined" label="Event Title" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "white" } }} InputLabelProps={{style : {color : 'white'} }}/><br/>
+                    <TextField fullWidth multiline id="description" variant="outlined" label="Event Description" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "white" } }} InputLabelProps={{style : {color : 'white'} }}/><br/>
+                </CardContent>
+                <CardActions>
+                    <Button color="secondary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post New Event</Button>
+                </CardActions>
+            </Card>
         </Paper>
         </>}
 
