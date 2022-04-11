@@ -31,7 +31,7 @@ const list = async (req, res) => {
 }
 
 const read = (req, res) => {
-    return res.json(req.event)
+    return res.json(req.eventProfile)
 }
 
 const getEventByID = async(req, res, next, id) => {
@@ -44,7 +44,7 @@ const getEventByID = async(req, res, next, id) => {
             })
         }
 
-        req.event = event
+        req.eventProfile = event
         next()
     } catch (err) {
         return res.status('400').json({
