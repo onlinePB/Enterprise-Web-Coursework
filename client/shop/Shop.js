@@ -49,7 +49,7 @@ export default function Shop() {
     })
 
     if (sessionStorage.getItem("basket") === null){
-        sessionStorage.setItem("basket", JSON.stringify([one]))
+        sessionStorage.setItem("basket", JSON.stringify(["one"]))
     }
 
     return function cleanup(){
