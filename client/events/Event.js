@@ -22,6 +22,7 @@ import TextField from '@material-ui/core/TextField'
 import CardHeader from '@material-ui/core/CardHeader';
 import {getEvent, remove} from './api-events'
 import {read} from './../user/api-user'
+import {Redirect} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -39,6 +40,7 @@ export default function Event({ match }){
     const classes = useStyles()
     const [event, setEvent] = useState([])
     const [user, setUser] = useState({})
+    const [redirect, setRedirect] = useState(false)
 
     useEffect(() => {
 
@@ -79,10 +81,15 @@ export default function Event({ match }){
       remove(eventID, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) =>{
           if (data.error) {
               console.log(data.error)
-            }
+          } else {
+            setRedirect(true)
+            document.location.reload()
+          }
       })
   }
-
+  if (redirect) {
+    return <Redirect to='/events/'/>
+  }
     return (<>
       <Paper elevation={4}>
         <Typography variant="h6" className={classes.commentTitle}>
