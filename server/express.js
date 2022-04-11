@@ -9,6 +9,7 @@ import Template from './../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
 import commentRoutes from './routes/comment.routes'
+import shopRoutes from './routes/shop.routes'
 // modules for server side rendering
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
@@ -47,6 +48,7 @@ app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 app.use('/', authRoutes)
 app.use('/', userRoutes)
 app.use('/', commentRoutes)
+app.use('/', shopRoutes)
 // proxy
 app.use('/api/dadjoke', proxy('https://icanhazdadjoke.com/'));
 
