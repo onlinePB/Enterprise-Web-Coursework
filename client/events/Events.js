@@ -110,8 +110,8 @@ export default function Users() {
                     <Typography variant="h6">
                         Create a new Event
                     </Typography>
-                    <TextField fullWidth id="title" variant="outlined" label="Event Title" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "black" } }} InputLabelProps={{style : {color : 'white'} }}/><br/>
-                    <TextField fullWidth multiline id="description" variant="outlined" label="Event Description" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "black" } }} InputLabelProps={{style : {color : 'white'} }}/><br/>
+                    <TextField fullWidth id="title" variant="outlined" label="Event Title" className={classes.textField} value={values.title} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "black" } }} InputLabelProps={{style : {color : 'black'} }}/><br/>
+                    <TextField fullWidth multiline id="description" variant="outlined" label="Event Description" className={classes.textField} value={values.description} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "black" } }} InputLabelProps={{style : {color : 'black'} }}/><br/>
                 </CardContent>
                 <CardActions>
                     <Button color="secondary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post New Event</Button>
