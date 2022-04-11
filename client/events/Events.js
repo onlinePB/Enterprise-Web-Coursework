@@ -50,6 +50,16 @@ export default function Users() {
     }
   }, [])
 
+    const attending = []
+    const notAttending = []
+    events.map((item, i) => {
+      if(events.attendees.includes(auth.isAuthenticated().user._id)){
+        attending.push(item)
+      } else {
+        notAttending.push(item)
+      }
+    })
+    console.log("attending: " + attending + "\nNot: " + notAttending)
 
     return (
         <Paper className={classes.root} elevation={4}>
@@ -57,7 +67,7 @@ export default function Users() {
             Events
             </Typography>
             <List>
-                {events.map((item, i) => {
+                {notAttending.map((item, i) => {
                     return (
                         <Link to={"/event/" + item._id} key={i}>
                             <ListItem>
