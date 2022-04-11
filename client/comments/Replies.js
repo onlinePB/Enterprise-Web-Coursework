@@ -123,7 +123,7 @@ export default function Replies({ match }){
             }
             </List>
         </Paper>
-        {auth.isAuthenticated() && <>
+        <>
             <Card className={classes.card} elevation={4}>
                 <CardContent>
                     <Typography variant="h6" className={classes.title}>
@@ -135,7 +135,7 @@ export default function Replies({ match }){
                     <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
                 </CardActions>
             </Card>
-        </>}
+        </>
        </>
     )
     
