@@ -63,7 +63,7 @@ export default function Shop() {
         basket.push(itemID)
     }
     window.sessionStorage.setItem("basket", JSON.stringify(basket))
-    console.log("Basket: " + JSON.stringify(basket))
+    console.log("Basket: " + basket.toString())
   }
 
 
