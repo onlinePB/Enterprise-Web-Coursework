@@ -156,7 +156,7 @@ export default function Comments() {
                     <Typography variant="h6" className={classes.commentTitle}>
                         Leave a comment!
                     </Typography>
-                    <TextField multiline id="message" variant="outlined" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal" InputLabelProps={{style : {color : 'white'} }}/><br/>
+                    <TextField multiline fullWidth id="message" variant="filled" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "white" } }} InputLabelProps={{style : {color : 'white'} }}/><br/>
                 </CardContent>
                 <CardActions>
                     <Button color="secondary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
