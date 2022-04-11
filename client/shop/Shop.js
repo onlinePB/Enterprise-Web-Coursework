@@ -17,6 +17,9 @@ import ImageIcon from '@material-ui/icons/Image';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import auth from './../auth/auth-helper'
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import IconButton from '@material-ui/core/IconButton';
+import CommentIcon from '@material-ui/icons/Comment';
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
