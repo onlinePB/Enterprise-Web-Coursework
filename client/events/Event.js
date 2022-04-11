@@ -53,6 +53,7 @@ export default function Event({ match }){
           }
         })
         
+        // Check to see if the user is an admin
         if (auth.isAuthenticated() != false){
           read({
             userId: auth.isAuthenticated().user._id
@@ -74,9 +75,16 @@ export default function Event({ match }){
         
     }, [])
 
-    console.log("admin?" + user.admin)
+    function deleteEvent(eventID){
+      remove(eventID, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) =>{
+          if (data.error) {
+              setValues({ ...values, error: data.error})
+            } else {
+              setValues({ ...values, error: '', open: true})
+            }
+      })
+  }
 
-    // onClick={deleteEvent}
     return (<>
       <Paper elevation={4}>
         <Typography variant="h6" className={classes.commentTitle}>
@@ -93,7 +101,7 @@ export default function Event({ match }){
       </Paper>
       {user.admin && <>
       <Card>
-        <Button color="secondary" variant="contained" className={classes.submit}>Delete</Button>
+        <Button color="secondary" onClick={() => deleteEvent(item._id)} variant="contained" className={classes.submit}>Delete</Button>
       </Card>
       </>}
     </>)
