@@ -32,7 +32,6 @@ const useStyles = makeStyles(theme => ({
 export default function Users() {
   const classes = useStyles()
   const [events, setEvents] = useState([])
-  const [attending, setAttending] = useState([])
   const [user, setUser] = useState({})
 
   useEffect(() => {
@@ -70,15 +69,23 @@ export default function Users() {
     }
   }, [])
 
-
-
     return (<>
         {user.admin && <>
         <Paper className={classes.root} elevation={4}>
             <Typography variant="h6" className={classes.title}>
             Admin panel
             </Typography>
-            <Button color="secondary"  variant="contained" className={classes.submit}>New Event</Button>
+            <Card>
+                <CardContent>
+                    <Typography variant="h6" className={classes.commentTitle}>
+                        Create a new event.
+                    </Typography>
+                    <TextField multiline fullWidth id="message" variant="outlined" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "white" } }} InputLabelProps={{style : {color : 'white'} }}/><br/>
+                </CardContent>
+                <CardActions>
+                    <Button color="secondary" variant="contained" className={classes.submit}>Post</Button>
+                </CardActions>
+            </Card>
         </Paper>
         </>}
 
