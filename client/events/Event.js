@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
 export default function Event({ match }){
     const classes = useStyles()
     const [event, setEvent] = useState([])
-
+    const [user, setUser] = useState({})
 
     useEffect(() => {
 
@@ -59,7 +59,7 @@ export default function Event({ match }){
           if (data && data.error) {
             console.log("error")
           } else {
-            console.log(JSON.parse(data))
+            setUser(data)
           }
         })
 
@@ -67,8 +67,11 @@ export default function Event({ match }){
           abortController.abort()
         }
 
-
+        
     }, [])
+
+    console.log("admin?" + user.admin)
+
     // onClick={deleteEvent}
     return (<>
       <Paper elevation={4}>
@@ -84,7 +87,7 @@ export default function Event({ match }){
           {event.description}
         </Typography>
       </Paper>
-      {auth.isAuthenticated() && <>
+      {user.admin && <>
       <Card>
         <Button color="secondary" variant="contained" className={classes.submit}>Delete</Button>
       </Card>
