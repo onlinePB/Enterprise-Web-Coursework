@@ -48,9 +48,24 @@ const read = (req, res) => {
     return res.json(req.product)
 }
 
+const remove = async(req, res) => {
+    try{
+        let product = req.product
+        let deletedProduct = await product.remove()
+        
+        res.json(deletedProduct)
+    } catch (err) {
+        console.log(err)
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        })
+    }
+}
+
 export default{
     create,
     list,
     productByID,
-    read
+    read,
+    remove
 }
