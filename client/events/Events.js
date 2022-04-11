@@ -14,7 +14,6 @@ import Person from '@material-ui/icons/Person'
 import EventIcon from '@material-ui/icons/Event';
 import {Link} from 'react-router-dom'
 import {list} from './api-events'
-import auth from './../auth/auth-helper'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -51,16 +50,7 @@ export default function Users() {
     }
   }, [])
 
-    const attending = []
-    const notAttending = []
-    events.map((item, i) => {
-      if(item.attendees.includes(auth.isAuthenticated().user._id)){
-        attending.push(item)
-      } else {
-        notAttending.push(item)
-      }
-    })
-    console.log("attending: " + attending[0].title + "\nNot: " + notAttending[0].title)
+  
 
     return (
         <Paper className={classes.root} elevation={4}>
@@ -68,7 +58,7 @@ export default function Users() {
             Events
             </Typography>
             <List>
-                {notAttending.map((item, i) => {
+                {events.map((item, i) => {
                     return (
                         <Link to={"/event/" + item._id} key={i}>
                             <ListItem>
