@@ -16,7 +16,8 @@ const CommentSchema = new mongoose.Schema({
 
     // The date of the event
     start:{
-        type: Date
+        type: Date,
+        default: Date.now,
     },
 
     // How many people have clicked on the event

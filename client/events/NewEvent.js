@@ -45,8 +45,7 @@ export default function NewEvent() {
   const classes = useStyles()
   const [values, setValues] = useState({
     title: '',
-    description: '',
-    start: '',
+    description: ''
   })
 
   const handleChange = name => event => {
@@ -55,8 +54,8 @@ export default function NewEvent() {
 
   const clickSubmit = () => {
     const event = {
-      title: values.title || undefined,
-      description: values.description || undefined,
+      title: values.title,
+      description: values.description
     }
 
     create(event).then((data) => {
