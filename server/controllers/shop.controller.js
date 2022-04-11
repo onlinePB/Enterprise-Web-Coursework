@@ -62,10 +62,24 @@ const remove = async(req, res) => {
     }
 }
 
+const update = async (req, res) => {
+    try {
+      let shopItem = req.product
+      shopItem = extend(shopItem, req.body)
+      await shopItem.save()
+      res.json(shopItem)
+    } catch (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+  }
+
 export default{
     create,
     list,
     productByID,
     read,
-    remove
+    remove,
+    update
 }
