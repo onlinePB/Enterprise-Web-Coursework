@@ -94,7 +94,7 @@ export default function Users() {
       } else {
         setValues({ ...values, error: '', open: true})
       }
-      document.location.reload() //Reload the page so they can see their comment
+      //document.location.reload() //Reload the page so they can see their comment
     })
     
   }
