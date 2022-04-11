@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     margin: `0px 0px 10px 0px`
   },
   inputBox: {
-    margin: auto
+    margin: `auto`
   }
 }))
 
