@@ -13,7 +13,7 @@ import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import EventIcon from '@material-ui/icons/Event';
 import {Link} from 'react-router-dom'
-import {get} from './api-events'
+import {getEvent} from './api-events'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -26,25 +26,22 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Users() {
+export default function Event({ match }) {
   const classes = useStyles()
-  const [events, setEvents] = useState([])
+  const [event, setEvent] = useState([])
 
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
 
-    list(signal).then((data) => {
-      if (data && data.error) {
-        console.log(data.error)
-      } else {
-        // Sort dates by newest first
-        setEvents(data.sort(function(a, b){
-            return new Date(b.start) - new Date(a.start)
-        }))
-      }
+    getEvent(match.params.eventID).then((data) => {
+        if (data && data.error) {
+          console.log(data.error)
+        } else {
+          setEvent(data)
+        }
     })
-
+    
     return function cleanup(){
       abortController.abort()
     }
@@ -54,23 +51,9 @@ export default function Users() {
     return (
         <Paper className={classes.root} elevation={4}>
             <Typography variant="h6" className={classes.title}>
-            Events
+            event.description
             </Typography>
-            <List>
-                {events.map((item, i) => {
-                    return (
-                        <Link to={"/event/" + item._id} key={i}>
-                            <ListItem>
-                                <ListItemAvatar>
-                                    <Avatar>
-                                        <EventIcon />
-                                    </Avatar>
-                                </ListItemAvatar>
-                            <ListItemText primary={item.title} secondary={new Date(item.start).toDateString()} />
-                        </ListItem>
-                    </Link>)
-                })}
-            </List>
+            
         </Paper>
     )
 }
