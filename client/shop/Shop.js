@@ -17,8 +17,7 @@ import ImageIcon from '@material-ui/icons/Image';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import auth from './../auth/auth-helper'
-import CommentIcon from '@material-ui/icons/Comment';
-
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
     padding: theme.spacing(1),
@@ -68,8 +67,8 @@ export default function Shop() {
                     <ListItemText primary={item.name} secondary={item.description} />
                     {auth.isAuthenticated() &&
                     <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="basket">
-                            <CommentIcon />
+                        <IconButton edge="end" aria-label="basket" color="secondary">
+                            <AddShoppingCartIcon/>
                         </IconButton>
                     </ListItemSecondaryAction>
                     }
