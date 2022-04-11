@@ -16,6 +16,9 @@ router.route('/api/event/:eventID')
 router.route('/api/events/:userID')
     .post(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.create)
 
+router.route('/api/event/:userID/:eventID')
+    .put(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.update)
+
 router.param('userID', userCtrl.userByID)
 router.param('eventID', eventCtrl.getEventByID)
 

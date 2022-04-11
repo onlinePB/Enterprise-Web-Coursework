@@ -53,9 +53,24 @@ const getEventByID = async(req, res, next, id) => {
     }
 }
 
+const update = async(req, res) => {
+    try{
+        let event = req.eventProfile
+        event = extend(event, req.body)
+        await event.save()
+        res.json(event)
+
+    } catch (err) {
+        return res.status(400).json({
+            error: errorHandler.getErrorMessage(err)
+        })
+    }
+}
+
 export default{
     create,
     list,
     read,
-    getEventByID
+    getEventByID,
+    update
 }
