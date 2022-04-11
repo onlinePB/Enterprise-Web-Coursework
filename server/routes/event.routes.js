@@ -18,7 +18,8 @@ router.route('/api/events/:userID')
 
 router.route('/api/event/:userID/:eventID')
     .put(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.update)
-
+    .delete(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.remove)
+    
 router.param('userID', userCtrl.userByID)
 router.param('eventID', eventCtrl.getEventByID)
 
