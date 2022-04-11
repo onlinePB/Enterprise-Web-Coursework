@@ -17,6 +17,6 @@ router.route('/api/events/:userID')
     .post(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.create)
 
 router.param('userID', userCtrl.userByID)
-router.param('eventID', eventCtrl.eventByID)
+router.param('eventID', eventCtrl.getEventByID)
 
 export default router
