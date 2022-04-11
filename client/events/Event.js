@@ -51,8 +51,20 @@ export default function Event({ match }){
 
 
     console.log(event)
-    return (
-      <div><p>{event.description}</p></div>
-    )
+    return (<>
+      <Paper elevation={4}>
+        <Typography variant="h6" className={classes.commentTitle}>
+            {event.title}
+        </Typography>
+        <Typography variant="subtitle1" gutterBottom>
+          {new Date(event.start).toDateString()}
+        </Typography>
+      </Paper>
+      <Paper elevation={4}>
+        <Typography variant="body1">
+          {event.description}
+        </Typography>
+      </Paper>
+    </>)
     
 }
