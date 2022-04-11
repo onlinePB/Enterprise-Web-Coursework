@@ -105,7 +105,7 @@ export default function Replies({ match }){
 
     console.log(comment)
     return (<>
-              <Card className={classes.replyCard}>
+              <Card>
                 <CardHeader title={comment.authorName} subheader={new Date(comment.created).toDateString()} avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
                         {String(comment.authorName).charAt(0)}
@@ -127,7 +127,7 @@ export default function Replies({ match }){
                 {replies.map((item, i) => {
                     return (
                         <>
-                            <Card>
+                            <Card className={classes.replyCard}>
                             <CardHeader title={item.authorName} subheader={new Date(item.created).toDateString()} avatar={
                                 <Avatar aria-label="recipe" className={classes.avatar}>
                                     {item.authorName.charAt(0)}
