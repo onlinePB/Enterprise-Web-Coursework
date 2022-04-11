@@ -21,7 +21,7 @@ import Button from '@material-ui/core/Button';
 import auth from './../auth/auth-helper'
 import TextField from '@material-ui/core/TextField'
 import {create, remove} from './api-comments.js'
-import Avatar from '@material-ui/core/Avatar';
+
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -105,11 +105,11 @@ export default function Comments() {
                     return (
                         <>
                             <Card>
-                            <CardHeader title={item.authorName} subheader={new Date(item.created).toDateString()} avatar={
+                            <CardHeader title={item.authorName} subheader={new Date(item.created).toDateString()}>
                                 <Avatar aria-label="recipe" className={classes.avatar}>
                                     {item.authorName.charAt(0)}
                                 </Avatar>
-                            }/>
+                            </CardHeader>
                                     
                                 
                         
