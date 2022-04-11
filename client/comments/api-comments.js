@@ -62,6 +62,7 @@ const listReplies = async(commentID) => {
   export {
     list,
     create,
-    remove
+    remove,
+    listReplies
   }
   
