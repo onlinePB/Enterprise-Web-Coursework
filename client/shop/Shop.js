@@ -53,7 +53,7 @@ export default function Shop() {
   }, [])
 
   function toggleBasket(itemID){
-      sessionStorage.setItem("basket", JSON.stringify([itemID]))
+      console.log(sessionStorage.getItem("basket"))
 
 /*
     if(sessionStorage.getItem("basket") !== null){
