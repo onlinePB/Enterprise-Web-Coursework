@@ -19,6 +19,18 @@ const create = async (req, res) => {
     }
 }
 
+const list = async (req, res) => {
+    try {
+      let event = await Events.find().select('_id title description start views attendees')
+      res.json(event)
+    } catch (err) {
+      return res.status(400).json({
+        error: errorHandler.getErrorMessage(err)
+      })
+    }
+  }
+
 export default{
-    create
+    create,
+    list
 }
