@@ -53,22 +53,12 @@ export default function Shop() {
   }, [])
 
   function toggleBasket(itemID){
-    getProduct(itemID).then((data) => {
-        if(data && data.error) {
-            console.log(data.error)
-        } else {
-            console.log("data: " + JSON.stringify(data))
-
-            if (!basket.includes(data)){
-                basket.push(data)
-                console.log("basket: " + basket.toString())
-            } else {
-                basket.remove(basket.indexOf(data))
-                console.log("index: " + basket.indexOf(data))
-                console.log("basket: " + basket)
-            }
-        }
-    })
+    if(basket.includes(itemID)){
+        basket.splice(basket.indexOf(itemID), 1)
+    } else {
+        basket.push(itemID)
+    }
+    console.log("Basket: " + basket.toString())
   }
 
 
