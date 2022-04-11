@@ -54,5 +54,51 @@ export default function Replies(){
         })
     }, [])
 
+    return (
+        <>
+        <Paper className={classes.root} elevation={4}>
+            <Typography variant="h6" className={classes.title}>
+            Replies
+            </Typography>
+            <List dense>
+                {replies.map((item, i) => {
+                    return (
+                        <>
+                            <Card>
+                            <CardHeader title={item.authorName} subheader={new Date(item.created).toDateString()} avatar={
+                                <Avatar aria-label="recipe" className={classes.avatar}>
+                                    {item.authorName.charAt(0)}
+                                </Avatar>
+                            }/>
+                                    
+                                <CardContent>
+                                    <Typography variant="body2" color="text.secondary">
+                                        {item.message}
+                                    </Typography>          
+                                </CardContent>
+
+                                {auth.isAuthenticated() &&
+                                    <CardActions>
+                                        <Button component={Link} to={"/replies/" + item._id} size="small">Replies</Button>
+
+                                        
+                                        {auth.isAuthenticated().user._id == item.author &&
+                                            <>  
+                                                <Button size="small" onClick={() => deleteComment(item._id)}>Delete</Button> 
+                                            </>                   
+                                        }
+
+                                        
+                                    </CardActions>
+                                }   
+                            </Card>
+                        </>
+                    )     
+                })
+            }
+            </List>
+        </Paper>
+       </>
+    )
     
 }
