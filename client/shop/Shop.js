@@ -58,7 +58,7 @@ export default function Shop() {
   }, [])
 
   function toggleBasket(itemID){
-    basket = JSON.stringify(sessionStorage.getItem("basket"))
+    basket = JSON.parse(sessionStorage.getItem("basket"))
 
     if (basket.includes(itemID)){
         basket.splice(basket.indexOf(itemID), 1)
