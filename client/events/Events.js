@@ -13,7 +13,7 @@ import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import EventIcon from '@material-ui/icons/Event';
 import {Link} from 'react-router-dom'
-import {get} from './api-events'
+import {list} from './api-events'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
