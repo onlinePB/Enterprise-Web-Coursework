@@ -30,7 +30,7 @@ const auth = {
       return false
 
     if (sessionStorage.getItem('jwt')){
-      if(JSON.parse(sessionStorage.getItem('jwt')).isAdmin){
+      if(JSON.parse(sessionStorage.getItem('jwt')).user.admin){
         return JSON.parse(sessionStorage.getItem('jwt'))
       } else
         return false
