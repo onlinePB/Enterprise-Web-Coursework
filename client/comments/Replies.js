@@ -173,7 +173,7 @@ export default function Replies({ match }){
                     <Typography variant="h6" className={classes.replyTitle}>
                         Leave a reply!
                     </Typography>
-                    <TextField multiline fullWidth id="message" variant="outlined" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "white" } }} InputLabelProps={{style : {color : 'white'} }}/><br/>
+                    <TextField multiline fullWidth id="message" variant="outlined" label="Reply:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "white" } }} InputLabelProps={{style : {color : 'white'} }}/><br/>
                 </CardContent>
                 <CardActions>
                     <Button color="secondary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
@@ -185,7 +185,7 @@ export default function Replies({ match }){
             <Card className={classes.inputBox}>
                 <CardContent>
                     <Typography variant="h6" className={classes.commentTitle}>
-                        You must be signed in to leave a comment.
+                        You must be signed in to leave a reply.
                     </Typography>
                 </CardContent>
             </Card>
