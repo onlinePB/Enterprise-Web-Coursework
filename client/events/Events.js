@@ -53,7 +53,7 @@ export default function Users() {
     const attending = []
     const notAttending = []
     events.map((item, i) => {
-      if(events.attendees.includes(auth.isAuthenticated().user._id)){
+      if(item.attendees.includes(auth.isAuthenticated().user._id)){
         attending.push(item)
       } else {
         notAttending.push(item)
