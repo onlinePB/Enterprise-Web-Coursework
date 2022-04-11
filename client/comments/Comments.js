@@ -27,11 +27,11 @@ const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
     padding: theme.spacing(1),
     margin: theme.spacing(5),
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.light
   }),
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
-    color: theme.palette.contrastText
+    color: `#ffffff`
   },
   commentCard: {
     margin: `0px 0px 10px 0px`
@@ -146,14 +146,14 @@ export default function Comments() {
             </List>
         </Paper>
         {auth.isAuthenticated() && <>
-            <Card className={classes.inputBox}>
-                <CardContent>
+            <Card>
+                <CardContent className={classes.inputBox}>
                     <Typography variant="h6" className={classes.title}>
                         Leave a comment!
                     </Typography>
                     <TextField multiline id="message" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"/><br/>
                 </CardContent>
-                <CardActions>
+                <CardActions className={classes.inputBox}>
                     <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
                 </CardActions>
             </Card>
