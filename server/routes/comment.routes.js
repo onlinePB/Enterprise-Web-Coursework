@@ -9,7 +9,7 @@ router.route('/api/comments')
     .get(commentCtrl.list)
     .post(authCtrl.requireSignin, commentCtrl.create)
 
-router.route('/api/replies')
+router.route('/api/replies/:commentID')
     .get(commentCtrl.listReplies)
 
 router.route('/api/comment/:userID/:commentID')
