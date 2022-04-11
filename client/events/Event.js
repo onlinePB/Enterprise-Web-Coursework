@@ -51,7 +51,7 @@ export default function Event({ match }) {
     return (
         <Paper className={classes.root} elevation={4}>
             <Typography variant="h6" className={classes.title}>
-            event.description
+            {event.description}
             </Typography>
             
         </Paper>
