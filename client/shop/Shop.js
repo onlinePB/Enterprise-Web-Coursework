@@ -53,17 +53,15 @@ export default function Shop() {
   }, [])
 
   function toggleBasket(itemID){
-    
-
     getProduct(itemID).then((data) => {
         if(data && data.error) {
             console.log(data.error)
         } else {
-            console.log("data: " + data)
+            console.log("data: " + JSON.stringify(data))
 
             if (!basket.includes(data)){
                 basket.push(data)
-                console.log("basket: " + basket)
+                console.log("basket: " + basket.toString())
             } else {
                 basket.remove(basket.indexOf(data))
                 console.log("index: " + basket.indexOf(data))
