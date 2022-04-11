@@ -21,6 +21,7 @@ import auth from './../auth/auth-helper'
 import TextField from '@material-ui/core/TextField'
 import CardHeader from '@material-ui/core/CardHeader';
 import {getEvent} from './api-events'
+import {read} from './../user/api-user'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -38,7 +39,6 @@ export default function Event({ match }){
     const classes = useStyles()
     const [event, setEvent] = useState([])
 
-    console.log(auth.isAuthenticated().user)
 
     useEffect(() => {
         getEvent(match.params.eventID).then((data) => {
@@ -48,6 +48,18 @@ export default function Event({ match }){
             setEvent(data)
           }
         })
+
+        read({
+          userId: auth.isAuthenticated.user._id
+        }, {t: jwt.token}, signal).then((data) => {
+          if (data && data.error) {
+            console.log("error")
+          } else {
+            console.log(JSON.parse(data))
+          }
+        })
+
+
     }, [])
     // onClick={deleteEvent}
     return (<>
