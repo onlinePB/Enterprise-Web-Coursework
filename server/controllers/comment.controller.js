@@ -21,7 +21,7 @@ const create = async (req, res) => {
 
 const list = async (req, res) => {
     try {
-      let comment = await Comments.find().select('_id message author replyTo created authorName')
+      let comment = await Comments.find({replyTo: "root"}).select('_id message author replyTo created authorName')
       res.json(comment)
     } catch (err) {
       return res.status(400).json({
