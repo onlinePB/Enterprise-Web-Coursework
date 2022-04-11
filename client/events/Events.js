@@ -15,6 +15,7 @@ import EventIcon from '@material-ui/icons/Event';
 import {Link} from 'react-router-dom'
 import {list} from './api-events'
 import Button from '@material-ui/core/Button'
+import auth from './../auth/auth-helper'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
