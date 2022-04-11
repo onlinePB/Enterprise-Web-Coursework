@@ -26,7 +26,8 @@ import CardHeader from '@material-ui/core/CardHeader';
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
     padding: theme.spacing(1),
-    margin: theme.spacing(5)
+    margin: theme.spacing(5),
+    color: theme.palette.primary.dark
   }),
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
@@ -34,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   },
   commentCard: {
     margin: `0px 0px 10px 0px`
-  }
+  },
 }))
 
 
