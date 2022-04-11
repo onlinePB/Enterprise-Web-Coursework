@@ -16,6 +16,7 @@ import {Link} from 'react-router-dom'
 import {list} from './api-events'
 import Button from '@material-ui/core/Button'
 import auth from './../auth/auth-helper'
+import {read} from './../user/api-user'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
