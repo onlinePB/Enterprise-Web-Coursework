@@ -49,7 +49,6 @@ export default function Event({ match }){
         })
     }, [])
 
-
     console.log(event)
     return (<>
       <Paper elevation={4}>
@@ -65,6 +64,10 @@ export default function Event({ match }){
           {event.description}
         </Typography>
       </Paper>
+      
+      <Card>
+        <Button color="secondary" variant="contained" onClick={deleteEvent} className={classes.submit}>Delete</Button>
+      </Card>
     </>)
     
 }

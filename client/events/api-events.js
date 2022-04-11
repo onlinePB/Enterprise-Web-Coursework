@@ -22,7 +22,24 @@ const getEvent = async(eventID) => {
     }
 }
 
+const remove = async (eventID, credentials, userID) => {
+    try {
+      let response = await fetch('/api/event/' + userID + "/" + eventID, {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + credentials.t
+        }
+      })
+      return await response.json()
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
 export{
     list,
-    getEvent
+    getEvent,
+    remove
 }
