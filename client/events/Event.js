@@ -101,7 +101,7 @@ export default function Event({ match }){
       </Paper>
       {user.admin && <>
       <Card>
-        <Button color="secondary" onClick={() => deleteEvent(item._id)} variant="contained" className={classes.submit}>Delete</Button>
+        <Button color="secondary" onClick={() => deleteEvent(event._id)} variant="contained" className={classes.submit}>Delete</Button>
       </Card>
       </>}
     </>)
