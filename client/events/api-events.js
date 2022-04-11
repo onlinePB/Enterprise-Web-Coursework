@@ -38,8 +38,21 @@ const remove = async (eventID, credentials, userID) => {
     }
   }
 
+  const listByAttending = async(userID) => {
+    try{
+        let response = await fetch('/api/attending/' + userID, {
+            method: 'GET',
+        })
+
+        return await response.json()
+    } catch(err) {
+        console.log(err)
+    }
+}
+
 export{
     list,
     getEvent,
-    remove
+    remove,
+    listByAttending
 }
