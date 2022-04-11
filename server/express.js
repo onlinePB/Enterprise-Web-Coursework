@@ -9,6 +9,7 @@ import Template from './../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
 import commentRoutes from './routes/comment.routes'
+
 // modules for server side rendering
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
