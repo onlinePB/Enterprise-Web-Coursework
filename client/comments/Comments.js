@@ -23,6 +23,7 @@ import TextField from '@material-ui/core/TextField'
 import {create, remove} from './api-comments.js'
 import CardHeader from '@material-ui/core/CardHeader';
 import Divider from '@material-ui/core/Divider';
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -97,6 +98,9 @@ export default function Comments() {
 
     return (
         <>
+        {!auth.isAuthenticated() && 
+          <Alert severity="warning">This is a warning alert — check it out!</Alert>
+        }
         <Paper className={classes.root} elevation={4}>
             <Typography variant="h6" className={classes.title}>
             Comments
@@ -111,6 +115,8 @@ export default function Comments() {
                                     {item.authorName.charAt(0)}
                                 </Avatar>
                             }/>
+
+                            <Divider variant="inset"/>
                                     
                                 <CardContent>
                                     <Typography variant="body2" color="text.secondary">
@@ -131,7 +137,7 @@ export default function Comments() {
                                     </CardActions>
                                  
                             </Card>
-                            <Divider variant="inset"/>
+                            
                         </>
                     )     
                 })
