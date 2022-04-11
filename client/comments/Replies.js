@@ -105,7 +105,7 @@ export default function Replies({ match }){
 
     console.log(comment)
     return (<>
-              <Card className="replyCard">
+              <Card className={classes.replyCard}>
                 <CardHeader title={comment.authorName} subheader={new Date(comment.created).toDateString()} avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
                         {String(comment.authorName).charAt(0)}
