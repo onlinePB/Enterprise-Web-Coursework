@@ -38,7 +38,7 @@ export default function Shop() {
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
-
+    sessionStorage.setItem("basket", "please work")
     list(signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
@@ -52,22 +52,23 @@ export default function Shop() {
     }
   }, [])
 
+  /*
   function toggleBasket(itemID){
     if(sessionStorage.getItem("basket") !== null){
-        basket = JSON.parse(sessionStorage.getItem("basket"))
+        let basket = JSON.parse(sessionStorage.getItem("basket"))
         if(basket.includes(itemID)){
             basket.splice(basket.indexOf(itemID), 1)
         } else {
             basket.push(itemID)
         }
     } else {
-        basket = [itemID]
+        let basket = [itemID]
     }
     sessionStorage.setItem("basket", JSON.stringify(basket))
     
     
     console.log("Basket: " + basket.toString())
-  }
+  }*/
 
 
     return (
