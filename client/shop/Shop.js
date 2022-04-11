@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
   
 }))
 
-if(window.sessionStorage.getItem("basket") == undefined){
+if(typeof JSON.parse(window.sessionStorage.getItem("basket")) === 'undefined'){
     window.sessionStorage.setItem("basket", JSON.stringify([]))
 }
 
@@ -57,10 +57,12 @@ export default function Shop() {
 
   function toggleBasket(itemID){
     let basket = JSON.parse(window.sessionStorage.getItem("basket"))
-    if(basket.includes(itemID)){
-        basket.splice(basket.indexOf(itemID), 1)
-    } else {
-        basket.push(itemID)
+    if(typeof basket !== 'undefined'){
+        if(basket.includes(itemID)){
+            basket.splice(basket.indexOf(itemID), 1)
+        } else {
+            basket.push(itemID)
+        }
     }
     window.sessionStorage.setItem("basket", JSON.stringify(basket))
     console.log("Basket: " + basket.toString())
