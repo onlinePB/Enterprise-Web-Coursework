@@ -49,8 +49,7 @@ export default function Event({ match }){
           }
         })
     }, [])
-
-    console.log(event)
+    // onClick={deleteEvent}
     return (<>
       <Paper elevation={4}>
         <Typography variant="h6" className={classes.commentTitle}>
@@ -67,7 +66,7 @@ export default function Event({ match }){
       </Paper>
       {auth.isAuthenticated() && <>
       <Card>
-        <Button color="secondary" variant="contained" onClick={deleteEvent} className={classes.submit}>Delete</Button>
+        <Button color="secondary" variant="contained" className={classes.submit}>Delete</Button>
       </Card>
       </>}
     </>)
