@@ -28,7 +28,29 @@ const list = async (req, res) => {
     }
 }
 
+const productByID = async (req, res, next, id) => {
+    try {
+      let shopItem = await ShopItem.findById(id)
+      if (!shopItem)
+        return res.status('400').json({
+          error: "Product not found"
+        })
+      req.product = user
+      next()
+    } catch (err) {
+      return res.status('400').json({
+        error: "Could not retrieve product"
+      })
+    }
+  }
+
+const read = (req, res) => {
+    return res.json(req.product)
+}
+
 export default{
     create,
-    list
+    list,
+    productByID,
+    read
 }

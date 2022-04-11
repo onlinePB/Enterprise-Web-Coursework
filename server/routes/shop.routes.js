@@ -7,10 +7,14 @@ const router = express.Router()
 
 router.route('/api/shop')
     .get(shopCtrl.list)
+    
 
 router.route('/api/shop/:userID')
     .post(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, shopCtrl.create)
 
-router.param('userID', userCtrl.userByID)
+router.route('/api/product/:itemID')
+    .post(shopCtrl.read)
 
+router.param('userID', userCtrl.userByID)
+router.param('itemID', shopCtrl.productByID)
 export default router
