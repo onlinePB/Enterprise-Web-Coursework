@@ -51,9 +51,9 @@ const getCommentByID = async(req, res, next, id) => {
     }
 }
 
-const listReplies = async(req, res, commentID) => {
+const listReplies = async(req, res, next, id) => {
     try{
-        let reply = await Comments.find({replyTo: commentID}).select('_id message author replyTo created authorName')
+        let reply = await Comments.find({replyTo: id}).select('_id message author replyTo created authorName')
         res.json(reply)
     } catch (err) {
         return res.status(400).json({
