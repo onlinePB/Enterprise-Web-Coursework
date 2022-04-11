@@ -79,7 +79,7 @@ export default function Shop() {
                     <ListItemText primary={item.name} secondary={item.description} />
                     {auth.isAuthenticated() &&
                     <ListItemSecondaryAction>
-                        <IconButton edge="end" aria-label="basket" color={basket.includes(item._id) ? "primary" : "secondary"} onClick={() => toggleBasket(item._id)}>
+                        <IconButton edge="end" aria-label="basket" color={basket.includes(item._id) ? "white" : "secondary"} onClick={() => toggleBasket(item._id)}>
                             <AddShoppingCartIcon/>
                         </IconButton>
                     </ListItemSecondaryAction>
