@@ -12,7 +12,6 @@ import UserAdmin from './user/UsersAdmin'
 
 import Comments from './comments/Comments'
 import Replies from './comments/Replies'
-import Shop from './shop/Shop'
 
 const MainRouter = () => {
     return (<div>
