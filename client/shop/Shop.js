@@ -16,7 +16,7 @@ import {list} from './api-shop.js'
 import ImageIcon from '@material-ui/icons/Image';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
+
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
