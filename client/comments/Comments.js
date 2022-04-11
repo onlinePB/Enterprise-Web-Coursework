@@ -36,6 +36,9 @@ const useStyles = makeStyles(theme => ({
   commentCard: {
     margin: `0px 0px 10px 0px`
   },
+  inputBox: {
+    margin: auto
+  }
 }))
 
 
@@ -143,7 +146,7 @@ export default function Comments() {
             </List>
         </Paper>
         {auth.isAuthenticated() && <>
-            <Card className={classes.card} elevation={4}>
+            <Card className={classes.inputBox}>
                 <CardContent>
                     <Typography variant="h6" className={classes.title}>
                         Leave a comment!
