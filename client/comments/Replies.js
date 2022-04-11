@@ -31,6 +31,9 @@ const useStyles = makeStyles(theme => ({
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle
+  },
+  replyCard: {
+    margin: `0px 0px 10px 0px`
   }
 }))
 
@@ -102,7 +105,7 @@ export default function Replies({ match }){
 
     console.log(comment)
     return (<>
-              <Card>
+              <Card className="replyCard">
                 <CardHeader title={comment.authorName} subheader={new Date(comment.created).toDateString()} avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
                         {String(comment.authorName).charAt(0)}
