@@ -14,7 +14,7 @@ import Person from '@material-ui/icons/Person'
 import EventIcon from '@material-ui/icons/Event';
 import {Link} from 'react-router-dom'
 import {list} from './api-events'
-import auth from './../auth/auth-helper'
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -31,6 +31,7 @@ export default function Users() {
   const classes = useStyles()
   const [events, setEvents] = useState([])
   const [attending, setAttending] = useState([])
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -47,6 +48,21 @@ export default function Users() {
       }
     })
 
+    // Check to see if the user is an admin
+    if (auth.isAuthenticated() != false){
+      read({
+        userId: auth.isAuthenticated().user._id
+      }, {t: auth.isAuthenticated().token}, signal).then((data) => {
+        if (data && data.error) {
+          console.log("error")
+        } else {
+          setUser(data)
+        }
+      })
+    } else {
+      setUser({"admin":false})
+    }
+
     return function cleanup(){
       abortController.abort()
     }
@@ -55,17 +71,15 @@ export default function Users() {
 
 
     return (<>
-        <Paper>
-          <List>
-          {attending.map((item, i) => {
-            return(
-              <ListItem>{item.title}</ListItem>
-            )
-          })
-
-          }
-          </List>
+        {user.admin && <>
+        <Paper className={classes.root} elevation={4}>
+            <Typography variant="h6" className={classes.title}>
+            Admin panel
+            </Typography>
+            <Button color="secondary"  variant="contained" className={classes.submit}>New Event</Button>
         </Paper>
+        </>}
+
         <Paper className={classes.root} elevation={4}>
             <Typography variant="h6" className={classes.title}>
             Events
