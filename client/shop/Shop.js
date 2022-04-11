@@ -13,6 +13,10 @@ import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import {Link} from 'react-router-dom'
 import {list} from './api-shop.js'
+import ImageIcon from '@material-ui/icons/Image';
+import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -52,15 +56,28 @@ export default function Shop() {
         <Typography variant="h6" className={classes.title}>
           All Products
         </Typography>
-        <List dense>
+        <List className={classes.root}>
          {products.map((item, i) => {
           return (<>
+                   
                     <ListItem>
-                      
-                      <ListItemText primary={item.name}/>
-                      <ListItemText primary={item.description}/>
-                      <ListItemText primary={String(item.stock)}/>
-                    </ListItem>
+                        <Grid container alignItems="center">
+                            <Grid item xs>
+                                <Typography gutterBottom variant="h4">
+                                    {item.name}
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <Typography gutterBottom variant="h6">
+                                    {String(item.stock)}
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                        <Typography color="textSecondary" variant="body2">
+                            {item.description}
+                        </Typography>
+                 </ListItem>
+                <Divider variant="middle" />
                 </>)
                })
              }
