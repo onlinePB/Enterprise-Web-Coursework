@@ -54,7 +54,7 @@ export default function Shop() {
     if (sessionStorage.getItem("basket") === null){
         sessionStorage.setItem("basket", JSON.stringify([]))
     } else {
-        setBasket = JSON.parse(sessionStorage.getItem("basket"))
+        setBasket(JSON.parse(sessionStorage.getItem("basket")))
     }
 
     return function cleanup(){
