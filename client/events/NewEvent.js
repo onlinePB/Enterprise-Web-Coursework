@@ -59,7 +59,7 @@ export default function NewEvent() {
       description: values.description
     }
 
-    create(event, auth.isAuthenticated().token, auth.isAuthenticated().user._id).then((data) => {
+    create(event, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error})
       } else {
