@@ -22,10 +22,4 @@ router.route('/api/comment/:userID/:commentID')
 router.param('commentID', commentCtrl.getCommentByID)
 router.param('userID', userCtrl.userByID)
 
-/*
-    .get(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.read)
-    .put(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.update)
-    */
-//TODO add routes for comments by user
-
 export default router
