@@ -34,7 +34,6 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.openTitle
   },
   commentTitle: {
-    margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: `#ffffff`
   },
   commentCard: {
@@ -156,7 +155,7 @@ export default function Comments() {
                     <Typography variant="h6" className={classes.commentTitle}>
                         Leave a comment!
                     </Typography>
-                    <TextField multiline fullWidth id="message" variant="filled" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "white" } }} InputLabelProps={{style : {color : 'white'} }}/><br/>
+                    <TextField multiline fullWidth id="message" variant="outlined" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "white" } }} InputLabelProps={{style : {color : 'white'} }}/><br/>
                 </CardContent>
                 <CardActions>
                     <Button color="secondary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
