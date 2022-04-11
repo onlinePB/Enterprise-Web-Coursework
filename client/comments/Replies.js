@@ -54,6 +54,31 @@ export default function Replies({ match }){
         })
     }, [])
 
+    const handleChange = message => event => {
+        setValues({ ...values, [message]: event.target.value })
+    }
+
+    const clickSubmit = () => {
+        const reply = {
+          message: values.message || undefined,
+          author: auth.isAuthenticated().user._id || undefined,
+          authorName: auth.isAuthenticated().user.name || undefined, 
+          replyTo: match.params.commentID || undefined
+        }
+        
+        create(reply, {t: auth.isAuthenticated().token}).then((data) => {
+          if (data.error) {
+            setValues({ ...values, error: data.error})
+          } else {
+            setValues({ ...values, error: '', open: true})
+          }
+          document.location.reload() //Reload the page so they can see their comment
+        })
+        
+      }
+
+
+
     return (
         <>
         <Paper className={classes.root} elevation={4}>
@@ -98,6 +123,19 @@ export default function Replies({ match }){
             }
             </List>
         </Paper>
+        {auth.isAuthenticated() && <>
+            <Card className={classes.card} elevation={4}>
+                <CardContent>
+                    <Typography variant="h6" className={classes.title}>
+                        Leave a reply!
+                    </Typography>
+                    <TextField multiline id="message" label="Reply:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"/><br/>
+                </CardContent>
+                <CardActions>
+                    <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
+                </CardActions>
+            </Card>
+        </>}
        </>
     )
     
