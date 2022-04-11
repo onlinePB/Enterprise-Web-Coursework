@@ -77,6 +77,17 @@ export default function Replies({ match }){
         
       }
 
+      function deleteReply(replyID){
+        remove(replyID, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) =>{
+            if (data.error) {
+                setValues({ ...values, error: data.error})
+              } else {
+                setValues({ ...values, error: '', open: true})
+              }
+            document.location.reload()
+        })
+    }
+
 
 
     return (
@@ -104,12 +115,10 @@ export default function Replies({ match }){
 
                                 {auth.isAuthenticated() &&
                                     <CardActions>
-                                        <Button component={Link} to={"/replies/" + item._id} size="small">Replies</Button>
-
                                         
                                         {auth.isAuthenticated().user._id == item.author &&
                                             <>  
-                                                <Button size="small" onClick={() => deleteComment(item._id)}>Delete</Button> 
+                                                <Button size="small" onClick={() => deleteReply(item._id)}>Delete</Button> 
                                             </>                   
                                         }
 
