@@ -75,17 +75,7 @@ export default function Users() {
             <Typography variant="h6" className={classes.title}>
             Admin panel
             </Typography>
-            <Card>
-                <CardContent>
-                    <Typography variant="h6" className={classes.commentTitle}>
-                        Create a new event.
-                    </Typography>
-                    <TextField multiline fullWidth id="message" variant="outlined" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "white" } }} InputLabelProps={{style : {color : 'white'} }}/><br/>
-                </CardContent>
-                <CardActions>
-                    <Button color="secondary" variant="contained" className={classes.submit}>Post</Button>
-                </CardActions>
-            </Card>
+            <Button component={Link} to={"/events/new"} color="secondary"  variant="contained" className={classes.submit}>New Event</Button>
         </Paper>
         </>}
 
