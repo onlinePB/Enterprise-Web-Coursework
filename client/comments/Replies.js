@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Replies(){
+export default function Replies({ match }){
     const classes = useStyles()
     const [replies, setReplies] = useState([])
     const [values, setValues] = useState({
