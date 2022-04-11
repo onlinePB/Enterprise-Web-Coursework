@@ -30,6 +30,18 @@ const list = async (req, res) => {
     }
 }
 
+const listByAttending = async(req, res) => {
+    try{
+        let user = req.eventProfile
+        let events = await Events.find({attendees: user._id}).select('_id title description start views attendees')
+        res.json(events)
+    } catch (err) {
+        return res.status(400).json({
+          error: errorHandler.getErrorMessage(err)
+        })
+      }
+    }
+
 const read = (req, res) => {
     return res.json(req.eventProfile)
 }
@@ -87,5 +99,6 @@ export default{
     read,
     getEventByID,
     update,
-    remove
+    remove,
+    listByAttending
 }

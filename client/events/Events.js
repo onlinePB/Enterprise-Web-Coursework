@@ -14,6 +14,7 @@ import Person from '@material-ui/icons/Person'
 import EventIcon from '@material-ui/icons/Event';
 import {Link} from 'react-router-dom'
 import {list} from './api-events'
+import auth from './../auth/auth-helper'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -29,6 +30,7 @@ const useStyles = makeStyles(theme => ({
 export default function Users() {
   const classes = useStyles()
   const [events, setEvents] = useState([])
+  const [attending, setAttending] = useState([])
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -45,14 +47,33 @@ export default function Users() {
       }
     })
 
+    listReplies(auth.isAuthenticated().user._id).then((data) => {
+      if (data && data.error) {
+        console.log(data.error)
+      } else {
+        setAttending(data)
+      }
+    })
+
     return function cleanup(){
       abortController.abort()
     }
   }, [])
 
-  
 
-    return (
+
+    return (<>
+        <Paper>
+          <List>
+          {attending.map((item, i) => {
+            return(
+              <ListItem>{item.title}</ListItem>
+            )
+          })
+
+          }
+          </List>
+        </Paper>
         <Paper className={classes.root} elevation={4}>
             <Typography variant="h6" className={classes.title}>
             Events
@@ -73,5 +94,5 @@ export default function Users() {
                 })}
             </List>
         </Paper>
-    )
+    </>)
 }
