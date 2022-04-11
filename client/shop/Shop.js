@@ -49,7 +49,7 @@ export default function Shop() {
     })
 
     if (sessionStorage.getItem("basket") === null){
-        sessionStorage.setItem("basket", JSON.stringify(["one"]))
+        sessionStorage.setItem("basket", JSON.stringify([]))
     }
 
     return function cleanup(){
@@ -58,8 +58,15 @@ export default function Shop() {
   }, [])
 
   function toggleBasket(itemID){
-      console.log(sessionStorage.getItem("basket"))
+    basket = JSON.stringify(sessionStorage.getItem("basket"))
 
+    if (basket.includes(itemID)){
+        basket.splice(basket.indexOf(itemID), 1)
+    } else {
+        basket.push(itemID)
+    }
+
+    sessionStorage.setItem("basket", JSON.stringify(basket))
 /*
     if(sessionStorage.getItem("basket") !== null){
         let basket = JSON.parse(sessionStorage.getItem("basket"))
