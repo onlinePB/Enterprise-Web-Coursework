@@ -51,7 +51,7 @@ export default function Event({ match }){
 
         read({
           userId: auth.isAuthenticated().user._id
-        }, {t: jwt.token}, signal).then((data) => {
+        }, {t: auth.isAuthenticated()}, signal).then((data) => {
           if (data && data.error) {
             console.log("error")
           } else {
