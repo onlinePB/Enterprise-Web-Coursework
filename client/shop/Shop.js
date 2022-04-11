@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography'
 import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import {Link} from 'react-router-dom'
-import {list} from './api-shop.js'
+import {list, get, getProduct} from './api-shop.js'
 import ImageIcon from '@material-ui/icons/Image';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
@@ -34,7 +34,7 @@ export default function Shop() {
   const classes = useStyles()
   const [products, setProducts] = useState([])
   const [basket, setBasket] = useState([])
-  
+
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -53,7 +53,22 @@ export default function Shop() {
   }, [])
 
   function toggleBasket(itemID){
+    getProduct(itemID).then((data) => {
+        if(data && data.error) {
+            console.log(data.error)
+        } else {
+            console.log("data: " + data)
 
+            if (!products.includes(data)){
+                basket.push(data)
+                console.log("basket: " + basket)
+            } else {
+                basket.remove(basket.indexOf(data))
+                console.log("index: " + basket.indexOf(data))
+                console.log("basket: " + basket)
+            }
+        }
+    })
   }
 
 
