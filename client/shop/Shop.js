@@ -53,14 +53,16 @@ export default function Shop() {
   }, [])
 
   function toggleBasket(itemID){
-    basket = JSON.parse(sessionStorage.getItem("basket")) 
-    if(typeof basket !== 'undefined'){
+    if(sessionStorage.getItem("basket") !== null){
+        basket = JSON.parse(sessionStorage.getItem("basket"))
         if(basket.includes(itemID)){
             basket.splice(basket.indexOf(itemID), 1)
         } else {
             basket.push(itemID)
         }
-    } 
+    } else {
+        basket = [itemID]
+    }
     sessionStorage.setItem("basket", JSON.stringify(basket))
     
     
