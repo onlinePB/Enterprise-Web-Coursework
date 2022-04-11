@@ -21,7 +21,7 @@ import auth from './../auth/auth-helper'
 import TextField from '@material-ui/core/TextField'
 import {create, remove} from './api-comments.js'
 import CardHeader from '@material-ui/core/CardHeader';
-import {listReplies} from './api-comments.js'
+import {listReplies, getComment} from './api-comments.js'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -37,6 +37,7 @@ const useStyles = makeStyles(theme => ({
 export default function Replies({ match }){
     const classes = useStyles()
     const [replies, setReplies] = useState([])
+    const [comment, setComment] = useState([])
     const [values, setValues] = useState({
         message: '',
         author: '',
@@ -52,7 +53,17 @@ export default function Replies({ match }){
             setReplies(data)
           }
         })
+
+        getComment(match.params.commentID).then((data) => {
+          if (data && data.error) {
+            console.log(data.error)
+          } else {
+            setComment(data)
+          }
+        })
     }, [])
+
+
 
     const handleChange = message => event => {
         setValues({ ...values, [message]: event.target.value })
@@ -90,8 +101,20 @@ export default function Replies({ match }){
 
 
 
-    return (
-        <>
+    return (<>
+              <Card>
+                <CardHeader title={comment.authorName} subheader={new Date(comment.created).toDateString()} avatar={
+                    <Avatar aria-label="recipe" className={classes.avatar}>
+                        {comment.authorName.charAt(0)}
+                    </Avatar>
+                }/>
+                                    
+                <CardContent>
+                  <Typography variant="body2" color="text.secondary">
+                    {comment.message}
+                  </Typography>          
+                </CardContent>
+              </Card>
         <Paper className={classes.root} elevation={4}>
             <Typography variant="h6" className={classes.title}>
             Replies
