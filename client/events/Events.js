@@ -13,7 +13,7 @@ import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import EventIcon from '@material-ui/icons/Event';
 import {Link} from 'react-router-dom'
-import {list, listReplies} from './api-events'
+import {list, listByAttending} from './api-events'
 import auth from './../auth/auth-helper'
 
 const useStyles = makeStyles(theme => ({
@@ -47,7 +47,7 @@ export default function Users() {
       }
     })
 
-    listReplies(auth.isAuthenticated().user._id).then((data) => {
+    listByAttending(auth.isAuthenticated().user._id).then((data) => {
       if (data && data.error) {
         console.log(data.error)
       } else {
