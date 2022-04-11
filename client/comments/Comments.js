@@ -22,7 +22,6 @@ import auth from './../auth/auth-helper'
 import TextField from '@material-ui/core/TextField'
 import {create, remove} from './api-comments.js'
 import CardHeader from '@material-ui/core/CardHeader';
-import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
