@@ -153,7 +153,7 @@ export default function Comments() {
         {auth.isAuthenticated() && <>
             <Card className={classes.inputBox}>
                 <CardContent>
-                    <Typography variant="h6" className={classes.title}>
+                    <Typography variant="h6" className={classes.commentTitle}>
                         Leave a comment!
                     </Typography>
                     <TextField multiline id="message" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"/><br/>
