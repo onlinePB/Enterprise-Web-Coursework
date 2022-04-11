@@ -52,16 +52,20 @@ export default function Event({ match }){
             setEvent(data)
           }
         })
-
-        read({
-          userId: auth.isAuthenticated().user._id
-        }, {t: auth.isAuthenticated().token}, signal).then((data) => {
-          if (data && data.error) {
-            console.log("error")
-          } else {
-            setUser(data)
-          }
-        })
+        
+        if (auth.isAuthenticated() != false){
+          read({
+            userId: auth.isAuthenticated().user._id
+          }, {t: auth.isAuthenticated().token}, signal).then((data) => {
+            if (data && data.error) {
+              console.log("error")
+            } else {
+              setUser(data)
+            }
+          })
+        } else {
+          setUser({"admin":false})
+        }
 
         return function cleanup(){
           abortController.abort()
