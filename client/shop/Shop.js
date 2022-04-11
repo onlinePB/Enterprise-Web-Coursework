@@ -35,6 +35,10 @@ export default function Shop() {
   const classes = useStyles()
   const [products, setProducts] = useState([])
 
+    if (sessionStorage.getItem("basket") === null){
+        sessionStorage.setItem("basket", JSON.stringify([one]))
+    }
+
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
