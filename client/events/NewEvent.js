@@ -44,11 +44,9 @@ const useStyles = makeStyles(theme => ({
 export default function Signup() {
   const classes = useStyles()
   const [values, setValues] = useState({
-    name: '',
-    password: '',
-    email: '',
-    open: false,
-    error: ''
+    title: '',
+    description: '',
+    start: '',
   })
 
   const handleChange = name => event => {
@@ -57,10 +55,11 @@ export default function Signup() {
 
   const clickSubmit = () => {
     const user = {
-      name: values.name || undefined,
-      email: values.email || undefined,
-      password: values.password || undefined
+      title: values.title || undefined,
+      description: values.description || undefined,
+      start: values.start || undefined
     }
+
     create(user).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error})
@@ -74,11 +73,10 @@ export default function Signup() {
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h6" className={classes.title}>
-            Sign Up
+            New Event
           </Typography>
-          <TextField id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
-          <TextField id="email" type="email" label="Email" className={classes.textField} value={values.email} onChange={handleChange('email')} margin="normal"/><br/>
-          <TextField id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal"/>
+          <TextField id="title" label="title" className={classes.textField} value={values.title} onChange={handleChange('title')} margin="normal"/><br/>
+          <TextField id="description" label="Email" className={classes.textField} value={values.email} onChange={handleChange('email')} margin="normal"/><br/>
           <br/> {
             values.error && (<Typography component="p" color="error">
               <Icon color="error" className={classes.error}>error</Icon>
@@ -90,16 +88,16 @@ export default function Signup() {
         </CardActions>
       </Card>
       <Dialog open={values.open} disableBackdropClick={true}>
-        <DialogTitle>New Account</DialogTitle>
+        <DialogTitle>Events</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            New account successfully created.
+            New event successfully created.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Link to="/signin">
+          <Link to="/events">
             <Button color="primary" autoFocus="autoFocus" variant="contained">
-              Sign In
+              Events
             </Button>
           </Link>
         </DialogActions>
