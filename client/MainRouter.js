@@ -12,6 +12,7 @@ import UserAdmin from './user/UsersAdmin'
 
 import Comments from './comments/Comments'
 import Replies from './comments/Replies'
+import Shop from './shop/Shop'
 
 const MainRouter = () => {
     return (<div>
@@ -26,6 +27,7 @@ const MainRouter = () => {
         <Route path="/user/:userId" component={Profile}/>
         <Route path="/useradmin/:userId" component={UserAdmin}/>
         <Route path="/replies/:commentID" component={Replies}/>
+        <Route path="/shop" component={Shop}/>
       </Switch>
     </div>)
 }
