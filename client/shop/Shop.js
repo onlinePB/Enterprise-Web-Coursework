@@ -53,13 +53,15 @@ export default function Shop() {
   }, [])
 
   function toggleBasket(itemID){
+    
+
     getProduct(itemID).then((data) => {
         if(data && data.error) {
             console.log(data.error)
         } else {
             console.log("data: " + data)
 
-            if (!products.includes(data)){
+            if (!basket.includes(data)){
                 basket.push(data)
                 console.log("basket: " + basket)
             } else {
