@@ -126,8 +126,7 @@ export default function Comments() {
                                             <>  
                                                 <Button size="small" onClick={() => deleteComment(item._id)}>Delete</Button> 
                                             </>                   
-                                        }</>}  
-y  
+                                        }</>}   
                                     </CardActions>
                                  
                             </Card>
