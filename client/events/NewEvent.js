@@ -15,6 +15,8 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import {Link} from 'react-router-dom'
 import auth from './../auth/auth-helper'
+import {read} from '../user/api-user'
+import {Redirect} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -43,12 +45,41 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function NewEvent() {
-  const classes = useStyles()
-  const [values, setValues] = useState({
-    title: '',
-    description: ''
+    const [redirect, setRedirect] = useState(false)
+    const classes = useStyles()
+    const [user, setUser] = useState({})
+    const [values, setValues] = useState({
+        title: '',
+        description: ''
   })
 
+  useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
+
+    // Check to see if the user is an admin
+    if (auth.isAuthenticated() != false){
+      read({
+        userId: auth.isAuthenticated().user._id
+      }, {t: auth.isAuthenticated().token}, signal).then((data) => {
+        if (data && data.error) {
+          console.log("error")
+        } else {
+          setUser(data)
+        }
+      })
+    } else {
+      setUser({"admin":false})
+    }
+
+    return function cleanup(){
+      abortController.abort()
+    }
+  }, [])
+
+  if(!user.admin){
+      setRedirect(true)
+  }
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value })
   }
@@ -68,7 +99,13 @@ export default function NewEvent() {
     })
   }
 
+    if (redirect) {
+        return <Redirect to='/events/'/>
+    }
+
     return (<div>
+
+        
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h6" className={classes.title}>
