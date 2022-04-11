@@ -18,7 +18,8 @@ router.route('/api/shop/:userID')
 
 router.route('/api/product/:userID/:itemID')
     .delete(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, shopCtrl.remove)
-
+    .put(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, shopCtrl.update)
+    
 router.param('userID', userCtrl.userByID)
 router.param('itemID', shopCtrl.productByID)
 export default router
