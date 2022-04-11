@@ -16,7 +16,7 @@ import {list} from './api-shop.js'
 import ImageIcon from '@material-ui/icons/Image';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
-
+import auth from './../auth/auth-helper'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -50,8 +50,6 @@ export default function Shop() {
       abortController.abort()
     }
   }, [])
-
-
     return (
       <Paper className={classes.root} elevation={4}>
         <Typography variant="h6" className={classes.title}>
@@ -66,7 +64,14 @@ export default function Shop() {
                                 <ImageIcon />
                             </Avatar>
                         </ListItemAvatar>
-            <           ListItemText primary={item.name} secondary={item.description} />
+                    <ListItemText primary={item.name} secondary={item.description} />
+                    {auth.isAuthenticated() &&
+                    <ListItemSecondaryAction>
+                        <IconButton edge="end" aria-label="basket">
+                            <CommentIcon />
+                        </IconButton>
+                    </ListItemSecondaryAction>
+                    }
                     </ListItem>
                     <Divider variant="inset" component="li" />
                 </>)
