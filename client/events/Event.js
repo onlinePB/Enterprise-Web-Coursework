@@ -41,6 +41,10 @@ export default function Event({ match }){
 
 
     useEffect(() => {
+
+      const abortController = new AbortController()
+      const signal = abortController.signal
+
         getEvent(match.params.eventID).then((data) => {
           if (data && data.error) {
             console.log(data.error)
@@ -58,6 +62,10 @@ export default function Event({ match }){
             console.log(JSON.parse(data))
           }
         })
+
+        return function cleanup(){
+          abortController.abort()
+        }
 
 
     }, [])
