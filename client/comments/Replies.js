@@ -26,7 +26,8 @@ import {listReplies, getComment} from './api-comments.js'
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
     padding: theme.spacing(1),
-    margin: theme.spacing(5)
+    margin: theme.spacing(5),
+    backgroundColor: theme.palette.primary.light
   }),
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
@@ -34,6 +35,13 @@ const useStyles = makeStyles(theme => ({
   },
   replyCard: {
     margin: `0px 0px 10px 0px`
+  },
+  replyTitle: {
+    color: `#ffffff`
+  },
+  inputBox: {
+    backgroundColor: theme.palette.primary.light,
+    color: `#ffffff`
   }
 }))
 
@@ -120,7 +128,7 @@ export default function Replies({ match }){
               </Card>
               
         <Paper className={classes.root} elevation={4}>
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant="h6" className={classes.replyTitle}>
             Replies
             </Typography>
             <List dense>
@@ -160,12 +168,12 @@ export default function Replies({ match }){
             </List>
         </Paper>
         {auth.isAuthenticated() && <>
-            <Card className={classes.card} elevation={4}>
+            <Card className={classes.inputBox}>
                 <CardContent>
-                    <Typography variant="h6" className={classes.title}>
+                    <Typography variant="h6" className={classes.replyTitle}>
                         Leave a reply!
                     </Typography>
-                    <TextField multiline id="message" label="Reply:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"/><br/>
+                    <TextField multiline fullWidth id="message" variant="outlined" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "white" } }} InputLabelProps={{style : {color : 'white'} }}/><br/>
                 </CardContent>
                 <CardActions>
                     <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
