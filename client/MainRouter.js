@@ -13,6 +13,7 @@ import UserAdmin from './user/UsersAdmin'
 import Comments from './comments/Comments'
 import Replies from './comments/Replies'
 import Events from './events/Events'
+import Event from './events/Event'
 
 const MainRouter = () => {
     return (<div>
@@ -28,6 +29,7 @@ const MainRouter = () => {
         <Route path="/useradmin/:userId" component={UserAdmin}/>
         <Route path="/replies/:commentID" component={Replies}/>
         <Route path="/events" component={Events}/>
+        <Route path="/event/:eventID" component={Event}/>
       </Switch>
     </div>)
 }
