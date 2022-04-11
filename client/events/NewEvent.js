@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Signup() {
+export default function NewEvent() {
   const classes = useStyles()
   const [values, setValues] = useState({
     title: '',
@@ -75,7 +75,7 @@ export default function Signup() {
             New Event
           </Typography>
           <TextField id="title" label="title" className={classes.textField} value={values.title} onChange={handleChange('title')} margin="normal"/><br/>
-          <TextField id="description" label="Email" className={classes.textField} value={values.email} onChange={handleChange('email')} margin="normal"/><br/>
+          <TextField id="description" label="description" className={classes.textField} value={values.description} onChange={handleChange('description')} margin="normal"/><br/>
           <br/> {
             values.error && (<Typography component="p" color="error">
               <Icon color="error" className={classes.error}>error</Icon>
