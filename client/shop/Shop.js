@@ -19,15 +19,24 @@ import Divider from '@material-ui/core/Divider';
 
 
 const useStyles = makeStyles(theme => ({
-  root: theme.mixins.gutters({
-    padding: theme.spacing(1),
-    margin: theme.spacing(5)
-  }),
+
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle
-  }
-}))
+  },
+
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.primary.light,
+  },
+
+  section1: {
+    margin: theme.spacing(3, 2),
+  },
+
+}));
+
 
 export default function Shop() {
   const classes = useStyles()
@@ -60,7 +69,7 @@ export default function Shop() {
          {products.map((item, i) => {
           return (<>
                    
-                    <ListItem>
+                    <ListItem className={classes.section1}>
                         <Grid container alignItems="center">
                             <Grid item xs>
                                 <Typography gutterBottom variant="h4">
