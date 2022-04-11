@@ -13,7 +13,7 @@ router.route('/api/shop/:userID')
     .post(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, shopCtrl.create)
 
 router.route('/api/product/:itemID')
-    .post(shopCtrl.read)
+    .get(shopCtrl.read)
 
 router.param('userID', userCtrl.userByID)
 router.param('itemID', shopCtrl.productByID)
