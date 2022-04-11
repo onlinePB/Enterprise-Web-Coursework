@@ -16,8 +16,7 @@ const CommentSchema = new mongoose.Schema({
 
     // The date of the event
     start:{
-        type: Date,
-        required: "A date is required"
+        type: Date
     },
 
     // How many people have clicked on the event
@@ -30,6 +29,12 @@ const CommentSchema = new mongoose.Schema({
     attendees: {
         type: Array,
         default: [""]
+    },
+
+    attendeesCount: {
+        type: Number,
+        default: 0,
+        min: 0
     }
 })
 

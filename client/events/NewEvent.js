@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
 import { makeStyles } from '@material-ui/core/styles'
-import {create} from '../user/api-user'
+import {create} from './api-events'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
@@ -54,13 +54,12 @@ export default function Signup() {
   }
 
   const clickSubmit = () => {
-    const user = {
+    const event = {
       title: values.title || undefined,
       description: values.description || undefined,
-      start: values.start || undefined
     }
 
-    create(user).then((data) => {
+    create(event).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error})
       } else {

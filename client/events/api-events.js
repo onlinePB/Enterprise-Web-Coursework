@@ -38,21 +38,26 @@ const remove = async (eventID, credentials, userID) => {
     }
   }
 
-  const listByAttending = async(userID) => {
-    try{
-        let response = await fetch('/api/attending/' + userID, {
-            method: 'GET',
+  const create = async (event, creds, userID) => {
+    try {
+        let response = await fetch('/api/events/' + userID, {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + creds.t
+          },
+          body: JSON.stringify(event)
         })
-
-        return await response.json()
+      return await response.json()
     } catch(err) {
-        console.log(err)
+      console.log(err)
     }
-}
+  }
 
 export{
     list,
     getEvent,
     remove,
-    listByAttending
+    create
 }
