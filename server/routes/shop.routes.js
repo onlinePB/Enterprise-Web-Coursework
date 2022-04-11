@@ -16,7 +16,7 @@ router.route('/api/product/:itemID')
 router.route('/api/shop/:userID')
     .post(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, shopCtrl.create)
 
-router.route('/api/shop/:userID/:itemID')
+router.route('/api/product/:userID/:itemID')
     .delete(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, shopCtrl.remove)
 
 router.param('userID', userCtrl.userByID)
