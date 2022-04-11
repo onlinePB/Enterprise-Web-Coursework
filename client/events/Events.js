@@ -84,8 +84,8 @@ export default function Users() {
 
   const clickSubmit = () => {
     const event = {
-      title: values.title || undefined,
-      description: values.description || undefined,
+      title: values.title,
+      description: values.description,
     }
     
     create(event, {t: auth.isAuthenticated().token}, auth.isAuthenticated()).then((data) => {
