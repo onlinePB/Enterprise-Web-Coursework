@@ -56,7 +56,7 @@ export default function Users() {
             <List>
                 {events.map((item, i) => {
                     return (
-                        <Link to={"/user/" + item._id} key={i}>
+                        <Link to={"/event/" + item._id} key={i}>
                             <ListItem>
                                 <ListItemAvatar>
                                     <Avatar>
