@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 export default function Shop() {
   const classes = useStyles()
   const [products, setProducts] = useState([])
-  var basket = []
+  const [basket, setBasket] = useState([])
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -54,7 +54,7 @@ export default function Shop() {
     if (sessionStorage.getItem("basket") === null){
         sessionStorage.setItem("basket", JSON.stringify([]))
     } else {
-        basket = JSON.parse(sessionStorage.getItem("basket"))
+        setBasket = JSON.parse(sessionStorage.getItem("basket"))
     }
 
     return function cleanup(){
@@ -64,9 +64,9 @@ export default function Shop() {
 
   function toggleBasket(itemID){
     if (basket.includes(itemID)){
-        basket.splice(basket.indexOf(itemID), 1)
+        setBasket(basket.splice(basket.indexOf(itemID), 1))
     } else {
-        basket.push(itemID)
+        setBasket(basket.push(itemID))
     }
 
     sessionStorage.setItem("basket", JSON.stringify(basket))
