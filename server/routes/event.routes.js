@@ -12,12 +12,12 @@ router.route('/api/events')
 router.route('/api/event/:eventID')
     .get(eventCtrl.read)
 
+router.route('/api/attending/:userID')
+    .get(eventCtrl.listByAttending)
+
 // Authenticated routes
 router.route('/api/events/:userID')
     .post(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.create)
-
-router.route('/api/attending/:userID')
-    .get(authCtrl.requireSignin, authCtrl.hasAuthorization, eventCtrl.listByAttending)
 
 router.route('/api/event/:userID/:eventID')
     .put(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.update)
