@@ -35,7 +35,7 @@ const productByID = async (req, res, next, id) => {
         return res.status('400').json({
           error: "Product not found"
         })
-      req.product = user
+      req.product = shopItem
       next()
     } catch (err) {
       return res.status('400').json({
