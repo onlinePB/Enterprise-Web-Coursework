@@ -13,7 +13,7 @@ import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import EventIcon from '@material-ui/icons/Event';
 import {Link} from 'react-router-dom'
-import {list} from './api-events'
+import {list, listReplies} from './api-events'
 import auth from './../auth/auth-helper'
 
 const useStyles = makeStyles(theme => ({
