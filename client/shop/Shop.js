@@ -35,9 +35,6 @@ export default function Shop() {
   const classes = useStyles()
   const [products, setProducts] = useState([])
 
-    if (sessionStorage.getItem("basket") === null){
-        sessionStorage.setItem("basket", JSON.stringify([one]))
-    }
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -50,6 +47,10 @@ export default function Shop() {
         setProducts(data)
       }
     })
+
+    if (sessionStorage.getItem("basket") === null){
+        sessionStorage.setItem("basket", JSON.stringify([one]))
+    }
 
     return function cleanup(){
       abortController.abort()
