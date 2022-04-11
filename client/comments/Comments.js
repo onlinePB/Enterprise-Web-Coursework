@@ -162,6 +162,16 @@ export default function Comments() {
                 </CardActions>
             </Card>
         </>}
+
+        {!auth.isAuthenticated() && <>
+            <Card className={classes.inputBox}>
+                <CardContent>
+                    <Typography variant="h6" className={classes.commentTitle}>
+                        You must be signed in to leave a comment.
+                    </Typography>
+                </CardContent>
+            </Card>
+        </>}
        </>
     )
 }
