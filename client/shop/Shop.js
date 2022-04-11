@@ -30,14 +30,11 @@ const useStyles = makeStyles(theme => ({
   
 }))
 
-if(typeof JSON.parse(window.sessionStorage.getItem("basket")) === 'undefined'){
-    window.sessionStorage.setItem("basket", JSON.stringify([]))
-}
 
 export default function Shop() {
   const classes = useStyles()
   const [products, setProducts] = useState([])
-  
+
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -56,15 +53,17 @@ export default function Shop() {
   }, [])
 
   function toggleBasket(itemID){
-    let basket = JSON.parse(window.sessionStorage.getItem("basket"))
+    basket = JSON.parse(sessionStorage.getItem("basket")) 
     if(typeof basket !== 'undefined'){
         if(basket.includes(itemID)){
             basket.splice(basket.indexOf(itemID), 1)
         } else {
             basket.push(itemID)
         }
-    }
-    window.sessionStorage.setItem("basket", JSON.stringify(basket))
+    } 
+    sessionStorage.setItem("basket", JSON.stringify(basket))
+    
+    
     console.log("Basket: " + basket.toString())
   }
 
