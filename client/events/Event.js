@@ -78,9 +78,7 @@ export default function Event({ match }){
     function deleteEvent(eventID){
       remove(eventID, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) =>{
           if (data.error) {
-              setValues({ ...values, error: data.error})
-            } else {
-              setValues({ ...values, error: '', open: true})
+              console.log(data.error)
             }
       })
   }
