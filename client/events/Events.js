@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Users() {
+export default function Events() {
   const classes = useStyles()
   const [events, setEvents] = useState([])
   const [user, setUser] = useState({})
