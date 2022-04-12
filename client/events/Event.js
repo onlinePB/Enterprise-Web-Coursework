@@ -88,6 +88,15 @@ export default function Event({ match }){
       })
   }
 
+  var buttonText = ""
+  if(event.attendees){
+    if(event.attendees.includes(auth.isAuthenticated().user._id)){
+      buttonText = "Cancel Attendance"
+    } else {
+      buttonText = "Attend"
+    }
+  }
+
   function toggleAttend(){
     if(event.attendees){
       var increment = 0
@@ -140,16 +149,7 @@ export default function Event({ match }){
       
       {auth.isAuthenticated() &&
       <Card>
-        <Button color="secondary" onClick={() => toggleAttend()} variant="contained" className={classes.submit}>
-          {event.attendees && <>
-            {event.attendees.includes(auth.isAuthenticated().user._id) &&
-              Cancel
-            }
-            {!event.attendees.includes(auth.isAuthenticated().user._id) &&
-              Attend
-            }
-          </>}
-        </Button>
+        <Button color="secondary" onClick={() => toggleAttend()} variant="contained" className={classes.submit}>{buttonText}</Button>
         {user.admin && <>
           <Button color="secondary" onClick={() => deleteEvent(event._id)} variant="contained" className={classes.submit}>Delete</Button>
         </>}
