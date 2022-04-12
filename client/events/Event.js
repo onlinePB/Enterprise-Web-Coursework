@@ -90,20 +90,24 @@ export default function Event({ match }){
 
   function toggleAttend(){
     if(event.attendees){
+      var increment = 0
       if (event.attendees.includes(auth.isAuthenticated().user._id)){
         event.attendees.splice(event.attendees.indexOf(auth.isAuthenticated().user._id), 1);
+        increment = -1
       } else {
         event.attendees.push(auth.isAuthenticated().user._id)
+        increment = 1
       }
-      updateAttendance()
+      updateAttendance(increment)
     }
   }
 
-  function updateAttendance() {
+  function updateAttendance(increment) {
     const eventUpdate = {
       title: event.title,
       description: event.description,
-      attendees: event.attendees
+      attendees: event.attendees,
+      attendeesCount: event.attendeesCount + increment
     }
     update(event._id, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id, eventUpdate).then((data) => {
       if (data && data.error) {
