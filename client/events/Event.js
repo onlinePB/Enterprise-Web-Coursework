@@ -158,7 +158,7 @@ export default function Event({ match }){
       <Paper elevation={4} className={classes.root}>
         <Button color="secondary" onClick={() => toggleAttend()} variant="contained" className={classes.submit}>{buttonText}</Button>
         {user.admin && <>
-          <Button color="secondary" component={Link} to={"/editevent/" + event._id}>Edit</Button>
+          <Button color="secondary" component={Link} to={"/editevent/" + event._id} variant="contained" className={classes.submit}>Edit</Button>
           <Button color="secondary" onClick={() => deleteEvent(event._id)} variant="contained" className={classes.submit}>Delete</Button>
         </>}
       </Paper>

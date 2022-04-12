@@ -80,13 +80,24 @@ export default function EventEdit({ match }) {
     setRedirect(true)
   }
 
-    var editTitle = "Edit: \"" + event.title + "\""
+    var editTitle = "Current title: \"" + event.title + "\""
     // Redirect the user to the events page once they're done editing
     if (redirect) {
         return <Redirect to='/events/'/>
     }
 
     return (<div>
+    <Card className={classes.card}>
+        <CardContent>
+            <Typography variant="h6" className={classes.title}>
+                {editTitle}
+            </Typography>
+            <Typography variant="body1">
+                {event.description}
+            </Typography>
+        </CardContent>
+      </Card>
+      
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h6" className={classes.title}>
