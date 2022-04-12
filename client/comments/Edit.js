@@ -51,7 +51,7 @@ export default function Edit({ match }) {
       author: '',
       authorName: ''
     })
-
+    
     useEffect(() => {
         // Gets the original comment
         getComment(match.params.commentID).then((data) => {
@@ -68,6 +68,7 @@ export default function Edit({ match }) {
         setValues({ ...values, [message]: event.target.value })
     }
 
+    console.log(comment.message)
   const clickSubmit = () => {
     const commentUpdate = {
         message: values.message || undefined,
@@ -86,7 +87,7 @@ export default function Edit({ match }) {
 
     // Redirect the user to the comments page once they're done editing
     if (redirect) {
-        return <Redirect to='/events/'/>
+        return <Redirect to='/comments/'/>
     }
 
     return (<div>
@@ -103,22 +104,6 @@ export default function Edit({ match }) {
           <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
         </CardActions>
       </Card>
-
-      <Dialog open={values.open} disableBackdropClick={true}>
-        <DialogTitle>New Account</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            New account successfully created.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Link to="/signin">
-            <Button color="primary" autoFocus="autoFocus" variant="contained">
-              Sign In
-            </Button>
-          </Link>
-        </DialogActions>
-      </Dialog>
     </div>
     )
 }
