@@ -13,6 +13,7 @@ import TextField from '@material-ui/core/TextField'
 import {create, remove} from './api-comments.js'
 import CardHeader from '@material-ui/core/CardHeader';
 import {listReplies, getComment} from './api-comments.js'
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
