@@ -90,6 +90,7 @@ export default function Edit({ match }) {
 
     // Redirect the user to the comments page once they're done editing
     if (redirect) {
+        document.location.reload()
         return <Redirect to='/comments/'/>
     }
 
@@ -100,7 +101,7 @@ export default function Edit({ match }) {
             Edit:
           </Typography>
           
-          <TextField multiline fullWidth id="message" variant="outlined" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"/><br/>
+          <TextField multiline fullWidth id="message" variant="outlined" label="New Message:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"/><br/>
 
         </CardContent>
         <CardActions>
