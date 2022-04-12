@@ -20,7 +20,7 @@ import Button from '@material-ui/core/Button';
 import auth from './../auth/auth-helper'
 import TextField from '@material-ui/core/TextField'
 import CardHeader from '@material-ui/core/CardHeader';
-import {getEvent, remove} from './api-events'
+import {getEvent, remove, update} from './api-events'
 import {read} from './../user/api-user'
 import {Redirect} from 'react-router-dom'
 
