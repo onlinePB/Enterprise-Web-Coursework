@@ -90,7 +90,7 @@ export default function Event({ match }){
 
   function toggleAttend(){
     if(event.attendees){
-      if (event.attendees.includes("testVal")){
+      if (event.attendees.includes(auth.isAuthenticated().user._id)){
         event.attendees.splice(event.attendees.indexOf(auth.isAuthenticated().user._id), 1);
       } else {
         event.attendees.push(auth.isAuthenticated().user._id)
