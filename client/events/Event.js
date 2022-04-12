@@ -148,12 +148,12 @@ export default function Event({ match }){
       </Paper>
       
       {auth.isAuthenticated() &&
-      <Card>
+      <Paper>
         <Button color="secondary" onClick={() => toggleAttend()} variant="contained" className={classes.submit}>{buttonText}</Button>
         {user.admin && <>
           <Button color="secondary" onClick={() => deleteEvent(event._id)} variant="contained" className={classes.submit}>Delete</Button>
         </>}
-      </Card>
+      </Paper>
       }
     </>)
     
