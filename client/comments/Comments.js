@@ -45,8 +45,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-
-
 export default function Comments() {
   const classes = useStyles()
   const [comments, setComments] = useState([])
@@ -54,11 +52,14 @@ export default function Comments() {
     message: '',
     author: '',
     authorName: ''
-    })
+  })
+
+
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
 
+    // Load all the comments
     list(signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
@@ -72,106 +73,106 @@ export default function Comments() {
     }
   }, [])
 
-    const handleChange = message => event => {
-        setValues({ ...values, [message]: event.target.value })
-    }
+  // Updates variables when user inputs new information
+  const handleChange = message => event => {
+      setValues({ ...values, [message]: event.target.value })
+  }
 
-    const clickSubmit = () => {
-        const comment = {
-          message: values.message || undefined,
-          author: auth.isAuthenticated().user._id || undefined,
-          authorName: auth.isAuthenticated().user.name || undefined
-        }
+  // This function is executed when the submit button to post a comment is clicked
+  const clickSubmit = () => {
+    const comment = {
+      message: values.message || undefined,
+      author: auth.isAuthenticated().user._id || undefined,
+      authorName: auth.isAuthenticated().user.name || undefined
+    }
         
-        create(comment, {t: auth.isAuthenticated().token}).then((data) => {
-          if (data.error) {
-            setValues({ ...values, error: data.error})
-          } else {
-            setValues({ ...values, error: '', open: true})
-          }
-          document.location.reload() //Reload the page so they can see their comment
-        })
-        
+    // Create a new comment in the database
+    create(comment, {t: auth.isAuthenticated().token}).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error})
+      } else {
+        setValues({ ...values, error: '', open: true})
       }
+        document.location.reload() //Reload the page so they can see their comment
+    })
+        
+  }
 
-    function deleteComment(commentID){
-        remove(commentID, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) =>{
-            if (data.error) {
-                setValues({ ...values, error: data.error})
-              } else {
-                setValues({ ...values, error: '', open: true})
-              }
-            document.location.reload()
-        })
-    }
+  // This function is executed when the delete button on a comment is clicked
+  function deleteComment(commentID){
+    // Delete the comment from the database
+    remove(commentID, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) =>{
+      if (data.error) {
+        setValues({ ...values, error: data.error})
+      } else {
+        setValues({ ...values, error: '', open: true})
+      }
+      document.location.reload()
+    })
+  }
 
-    return (
-        <>
-        <Paper className={classes.root} elevation={4}>
-            <Typography variant="h6" className={classes.commentTitle}>
-            Comments
-            </Typography>
-            <List dense>
-                {comments.map((item, i) => {
-                    return (
-                        <>
-                            <Card className={classes.commentCard}>
-                            <CardHeader title={item.authorName} subheader={new Date(item.created).toDateString()} avatar={
-                                <Avatar aria-label="recipe" className={classes.avatar}>
-                                    {item.authorName.charAt(0)}
-                                </Avatar>
-                            }/>
+  // Render the page
+  return (<>
+    <Paper className={classes.root} elevation={4}>
+      <Typography variant="h6" className={classes.commentTitle}>
+        Comments
+      </Typography>
 
-                            
-                                    
-                                <CardContent>
-                                    <Typography variant="body2" color="text.secondary">
-                                        {item.message}
-                                    </Typography>          
-                                </CardContent>
+      <List dense>
+        {comments.map((item, i) => {
+          return (
+            <>
+            <Card className={classes.commentCard}>
+              <CardHeader title={item.authorName} subheader={new Date(item.created).toDateString()} avatar={
+                <Avatar aria-label="recipe" className={classes.avatar}>
+                  {item.authorName.charAt(0)}
+                </Avatar>
+              }/>
+                                                          
+              <CardContent>
+                <Typography variant="body2" color="text.secondary">
+                  {item.message}
+                </Typography>          
+              </CardContent>
 
-                      
-                                    <CardActions>
-                                        <Button component={Link} to={"/replies/" + item._id} size="small">Replies</Button>
-
-                                        {auth.isAuthenticated() && <>
-                                        {auth.isAuthenticated().user._id == item.author &&
-                                            <>  
-                                                <Button size="small" onClick={() => deleteComment(item._id)}>Delete</Button> 
-                                            </>                   
-                                        }</>}   
-                                    </CardActions>
-                                 
-                            </Card>
-                        </>
-                    )     
-                })
-            }
-            </List>
-        </Paper>
-        {auth.isAuthenticated() && <>
-            <Card className={classes.inputBox}>
-                <CardContent>
-                    <Typography variant="h6" className={classes.commentTitle}>
-                        Leave a comment!
-                    </Typography>
-                    <TextField multiline fullWidth id="message" variant="outlined" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "white" } }} InputLabelProps={{style : {color : 'white'} }}/><br/>
-                </CardContent>
-                <CardActions>
-                    <Button color="secondary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
-                </CardActions>
+              <CardActions>
+                <Button component={Link} to={"/replies/" + item._id} size="small">Replies</Button>
+                  {auth.isAuthenticated() && <>
+                    {auth.isAuthenticated().user._id == item.author && <>  
+                      <Button size="small" onClick={() => deleteComment(item._id)}>Delete</Button> 
+                    </>}
+                  </>}   
+              </CardActions>                           
             </Card>
-        </>}
+            </>
+          )     
+        })}
+      </List>
+    </Paper>
 
-        {!auth.isAuthenticated() && <>
-            <Card className={classes.inputBox}>
-                <CardContent>
-                    <Typography variant="h6" className={classes.commentTitle}>
-                        You must be signed in to leave a comment.
-                    </Typography>
-                </CardContent>
-            </Card>
-        </>}
-       </>
-    )
+    {auth.isAuthenticated() && <>
+      <Card className={classes.inputBox}>
+        <CardContent>
+          <Typography variant="h6" className={classes.commentTitle}>
+            Leave a comment!
+          </Typography>
+          <TextField multiline fullWidth id="message" variant="outlined" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"  inputProps={{ style: { color: "white" } }} InputLabelProps={{style : {color : 'white'} }}/><br/>
+        </CardContent>
+
+        <CardActions>
+          <Button color="secondary" variant="contained" onClick={clickSubmit} className={classes.submit}>Post</Button>
+        </CardActions>
+      </Card>
+    </>}
+
+    {!auth.isAuthenticated() && <>
+      <Card className={classes.inputBox}>
+        <CardContent>
+          <Typography variant="h6" className={classes.commentTitle}>
+            You must be signed in to leave a comment.
+          </Typography>
+        </CardContent>
+      </Card>
+    </>}
+  </>)
 }
