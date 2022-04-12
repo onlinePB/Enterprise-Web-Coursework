@@ -149,7 +149,9 @@ export default function Events() {
                                 </ListItemAvatar>
                             <ListItemText primary={item.title} secondary={new Date(item.start).toDateString()} />
                             {user.admin && <>
-                              <ListItemText style={{display:'flex', justifyContent:'flex-end'}} primary={"Attending: " + item.attendeesCount} secondary={"Views: " + item.views} />
+                              <span style={{display:'flex', justifyContent:'flex-end'}}>
+                                <ListItemText primary={"Attending: " + item.attendeesCount} secondary={"Views: " + item.views} />
+                              </span>
                             </>}
                         </ListItem>
                     </Link>)
