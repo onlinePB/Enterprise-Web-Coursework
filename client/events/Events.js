@@ -89,7 +89,7 @@ export default function Users() {
     }
     console.log("values.title: " + values.title)
     console.log("values.desc: " + values.description)
-    console.log("event: " + newEvent)
+    console.log("event: " + JSON.stringify(newEvent))
     
     create(newEvent, {t: auth.isAuthenticated().token}, auth.isAuthenticated()).then((data) => {
       if (data.error) {
