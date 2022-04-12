@@ -2,7 +2,7 @@ import Events from '../models/event.model'
 import extend from 'lodash/extend'
 import errorHandler from './../helpers/dbErrorHandler'
 
-// Creates a new comemnt
+// Creates a new event
 const create = async (req, res) => {
     const event = new Events(req.body)
 
@@ -19,6 +19,7 @@ const create = async (req, res) => {
     }
 }
 
+// Gets all events
 const list = async (req, res) => {
     try {
       let event = await Events.find().select('_id title description start views attendees attendeesCount')
@@ -30,6 +31,7 @@ const list = async (req, res) => {
     }
 }
 
+// Gets a particular event
 const read = (req, res) => {
     let event = req.eventProfile
     event.views = event.views + 1
@@ -37,6 +39,7 @@ const read = (req, res) => {
     return res.json(req.eventProfile)
 }
 
+// Searches for a particular event using it's ID
 const getEventByID = async(req, res, next, id) => {
     try{
         let event = await Events.findById(id)
@@ -56,6 +59,7 @@ const getEventByID = async(req, res, next, id) => {
     }
 }
 
+// Updates an existing event
 const update = async(req, res) => {
     try{
         let event = req.eventProfile
@@ -70,6 +74,7 @@ const update = async(req, res) => {
     }
 }
 
+// Deletes an event
 const remove = async(req, res) => {
     try{
         let event = req.eventProfile
