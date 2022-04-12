@@ -24,6 +24,7 @@ router.route('/api/replies/:commentID')
 router.route('/api/comment/:userID/:commentID')
     .get(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.read)
     .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.remove)
+    .put(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.update)
 
 router.param('commentID', commentCtrl.getCommentByID)
 router.param('userID', userCtrl.userByID)
