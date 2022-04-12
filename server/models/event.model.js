@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 
+// This scheme models an Event record
 const CommentSchema = new mongoose.Schema({
     // Name of the event
     title:{
@@ -27,11 +28,13 @@ const CommentSchema = new mongoose.Schema({
         min: 0
     },
 
+    // List of users who are attending in the form of an array of user IDs
     attendees: {
         type: Array,
         default: [""]
     },
 
+    // A count of the amount of people attending the event
     attendeesCount: {
         type: Number,
         default: 0,
