@@ -125,27 +125,29 @@ export default function Event({ match }){
 
   // Render the page
   return (<>
-      <Paper elevation={4} className={classes.panel}>
-        <Typography variant="h6" className={classes.title}>
-            {event.title}
-        </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          {new Date(event.start).toDateString()}
-        </Typography>
-      </Paper>
-      <Paper elevation={4} className={classes.panel}>
-        <Typography variant="body1">
-          {event.description}
-        </Typography>
-      </Paper>
+    <Paper elevation={4} className={classes.panel}>
+      <Typography variant="h6" className={classes.title}>
+        {event.title}
+      </Typography>
+
+      <Typography variant="subtitle1" gutterBottom>
+        {new Date(event.start).toDateString()}
+      </Typography>
+    </Paper>
+
+    <Paper elevation={4} className={classes.panel}>
+      <Typography variant="body1">
+        {event.description}
+      </Typography>
+    </Paper>
       
-      {auth.isAuthenticated() &&
+    {auth.isAuthenticated() &&
       <Paper elevation={4}>
         <Button color="secondary" onClick={() => toggleAttend()} variant="contained" className={classes.submit}>{buttonText}</Button>
         {user.admin && <>
           <Button color="secondary" onClick={() => deleteEvent(event._id)} variant="contained" className={classes.submit}>Delete</Button>
         </>}
       </Paper>
-      }
+    }
   </>)  
 }
