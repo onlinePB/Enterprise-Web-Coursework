@@ -139,7 +139,7 @@ export default function Users() {
                                 </ListItemAvatar>
                             <ListItemText primary={item.title} secondary={new Date(item.start).toDateString()} />
                             {user.admin && <>
-                              <ListItemText primary={item.attendeesCount} secondary={item.views} />
+                              <ListItemText primary={"Attending: " + item.attendeesCount} secondary={"Views:" + item.views} />
                             </>}
                         </ListItem>
                     </Link>)
