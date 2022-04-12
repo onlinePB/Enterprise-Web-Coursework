@@ -94,7 +94,7 @@ export default function EventEdit({ match }) {
           </Typography>
           
           <TextField multiline fullWidth id="message" variant="outlined" label="New Title:" className={classes.textField} value={values.title} onChange={handleChange('title')} margin="normal"/><br/>
-          <TextField multiline fullWidth id="message" variant="outlined" label="New:" className={classes.textField} value={values.description} onChange={handleChange('description')} margin="normal"/><br/>
+          <TextField multiline fullWidth id="message" variant="outlined" label="New Description:" className={classes.textField} value={values.description} onChange={handleChange('description')} margin="normal"/><br/>
 
         </CardContent>
         <CardActions>
