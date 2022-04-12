@@ -37,68 +37,72 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Replies({ match }){
-    const classes = useStyles()
-    const [replies, setReplies] = useState([])
-    const [comment, setComment] = useState([])
-    const [values, setValues] = useState({
-        message: '',
-        author: '',
-        authorName: ''
+  const classes = useStyles()
+  const [replies, setReplies] = useState([])
+  const [comment, setComment] = useState([])
+  const [values, setValues] = useState({
+    message: '',
+    author: '',
+    authorName: ''
+  })
+
+  useEffect(() => {
+    // Gets all replies to the comment
+    listReplies(match.params.commentID).then((data) => {
+      if (data && data.error) {
+        console.log(data.error)
+      } else {
+        setReplies(data)
+      }
     })
-
-    useEffect(() => {
-    
-        listReplies(match.params.commentID).then((data) => {
-          if (data && data.error) {
-            console.log(data.error)
-          } else {
-            setReplies(data)
-          }
-        })
-
-        getComment(match.params.commentID).then((data) => {
-          if (data && data.error) {
-            console.log(data.error)
-          } else {
+        
+    // Gets the original comment
+    getComment(match.params.commentID).then((data) => {
+      if (data && data.error) {
+        console.log(data.error)
+      } else {
             setComment(data)
           }
         })
     }, [])
 
-
-
+    // Updates variables when the user enters new information
     const handleChange = message => event => {
         setValues({ ...values, [message]: event.target.value })
     }
 
+    // This function is ran when the user posts a new reply
     const clickSubmit = () => {
-        const reply = {
-          message: values.message || undefined,
-          author: auth.isAuthenticated().user._id || undefined,
-          authorName: auth.isAuthenticated().user.name || undefined, 
-          replyTo: match.params.commentID || undefined
-        }
-        
-        create(reply, {t: auth.isAuthenticated().token}).then((data) => {
-          if (data.error) {
-            setValues({ ...values, error: data.error})
-          } else {
-            setValues({ ...values, error: '', open: true})
-          }
-          document.location.reload() //Reload the page so they can see their comment
-        })
-        
+      const reply = {
+        message: values.message || undefined,
+        author: auth.isAuthenticated().user._id || undefined,
+        authorName: auth.isAuthenticated().user.name || undefined, 
+        replyTo: match.params.commentID || undefined
       }
+        
+      // Create a new reply
+      create(reply, {t: auth.isAuthenticated().token}).then((data) => {
+        if (data.error) {
+          setValues({ ...values, error: data.error})
+        } else {
+          setValues({ ...values, error: '', open: true})
+        }
 
-      function deleteReply(replyID){
-        remove(replyID, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) =>{
-            if (data.error) {
-                setValues({ ...values, error: data.error})
-              } else {
-                setValues({ ...values, error: '', open: true})
-              }
-            document.location.reload()
-        })
+        document.location.reload() //Reload the page so they can see their comment
+      })     
+    }
+
+    // This function is ran when the user clicks delete on one of their replies
+    function deleteReply(replyID){
+      // Delete the reply from the database
+      remove(replyID, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) =>{
+        if (data.error) {
+          setValues({ ...values, error: data.error})
+        } else {
+          setValues({ ...values, error: '', open: true})
+        }
+        document.location.reload()
+      })
     }
 
     return (<>
