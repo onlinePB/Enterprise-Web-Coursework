@@ -44,6 +44,7 @@ export default function Events() {
     const abortController = new AbortController()
     const signal = abortController.signal
 
+    // Get all the events from the database
     list(signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
@@ -69,24 +70,25 @@ export default function Events() {
     } else {
       setUser({"admin":false})
     }
+
     return function cleanup(){
       abortController.abort()
     }
   }, [])
 
+  // Update the variables when the user inputs new data
   const handleChange = message => event => {
     setValues({ ...values, [message]: event.target.value })
   }
 
+  // Executed when the create event button is clicked
   const clickSubmit = () => {
     const newEvent = {
       title: values.title || undefined,
       description: values.description || undefined,
     }
-    console.log("values.title: " + values.title)
-    console.log("values.desc: " + values.description)
-    console.log("event: " + JSON.stringify(newEvent))
     
+    // Add a new event to the database
     create(newEvent, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error})
@@ -94,11 +96,11 @@ export default function Events() {
         setValues({ ...values, error: '', open: true})
       }
       document.location.reload() //Reload the page so they can see their comment
-    })
-    
+    })  
   }
 
-    return (<>
+  // Render the page
+  return (<>
         {user.admin && <>
         <Paper className={classes.root} elevation={4}>
             <Typography variant="h6" className={classes.title}>
@@ -154,5 +156,5 @@ export default function Events() {
                 })}
             </List>
         </Paper>
-    </>)
+  </>)
 }
