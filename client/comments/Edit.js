@@ -68,7 +68,6 @@ export default function Edit({ match }) {
         setValues({ ...values, [message]: event.target.value })
     }
 
-    console.log(comment.message)
   const clickSubmit = () => {
     const commentUpdate = {
         message: values.message || undefined,
@@ -82,6 +81,10 @@ export default function Edit({ match }) {
           //setValues({...values, userId: data._id, redirectToProfile: true})
         }
     })
+    setRedirect(true)
+  }
+
+  const cancel = () => {
     setRedirect(true)
   }
 
@@ -102,6 +105,7 @@ export default function Edit({ match }) {
         </CardContent>
         <CardActions>
           <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
+          <Button color="primary" variant="contained" onClick={cancel} className={classes.submit}>Cancel</Button>
         </CardActions>
       </Card>
     </div>
