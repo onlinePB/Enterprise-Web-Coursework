@@ -131,6 +131,7 @@ export default function Comments() {
                 <Button component={Link} to={"/replies/" + item._id} size="small">Replies</Button>
                   {auth.isAuthenticated() && <>
                     {auth.isAuthenticated().user._id == item.author && <>  
+                      <Button component={Link} to={"/edit/" + item._id} size="small">Edit</Button>
                       <Button size="small" onClick={() => deleteComment(item._id)}>Delete</Button> 
                     </>}
                   </>}   
