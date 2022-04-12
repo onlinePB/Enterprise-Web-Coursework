@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   }),
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
-    color: theme.palette.openTitle
+    color: "#FFFFFF"
   },
 
   panel: {
@@ -138,7 +138,7 @@ export default function Event({ match }){
   // Render the page
   return (<>
     <Paper elevation={4} className={classes.root}>
-      <Typography variant="h6" className={classes.title}>
+      <Typography variant="h4" className={classes.title}>
         {event.title}
       </Typography>
 
