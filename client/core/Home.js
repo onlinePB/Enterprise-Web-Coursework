@@ -71,7 +71,6 @@ export default function Home(){
             Home Page
           </Typography>
           <CardMedia className={classes.media} image={myImg} title="My Image"/>
-          <Typography variant="body2" component="p" className={classes.credit} color="textSecondary">Photo: Chompster</Typography>
           <CardContent>
             <Typography variant="body1" component="p">
               Welcome to the official website of Love-for-the-Uglies!
