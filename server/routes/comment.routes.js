@@ -6,10 +6,10 @@ import userCtrl from '../controllers/user.controller'
 const router = express.Router()
 
 // GET: Gets all comments
-// POST: Creates a new comment
 router.route('/api/comments')
     .get(commentCtrl.list)
     
+// POST: Creates a new comment
 router.route('/api/comment/:userID')
     .post(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.create)
 
