@@ -14,6 +14,7 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import {Link} from 'react-router-dom'
 import auth from './../auth/auth-helper'
+import {Redirect} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -44,6 +45,7 @@ const useStyles = makeStyles(theme => ({
 export default function Edit({ match }) {
     const classes = useStyles()
     const [comment, setComment] = useState([])
+    const [redirect, setRedirect] = useState(false)
     const [values, setValues] = useState({
       message: comment.message,
       author: '',
@@ -79,7 +81,13 @@ export default function Edit({ match }) {
           //setValues({...values, userId: data._id, redirectToProfile: true})
         }
     })
+    setRedirect(true)
   }
+
+    // Redirect the user to the comments page once they're done editing
+    if (redirect) {
+        return <Redirect to='/events/'/>
+    }
 
     return (<div>
       <Card className={classes.card}>
