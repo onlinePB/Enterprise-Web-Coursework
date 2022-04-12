@@ -82,7 +82,7 @@ export default function Replies({ match }){
       }
         
       // Create a new reply
-      create(reply, {t: auth.isAuthenticated().token}).then((data) => {
+      create(reply, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) => {
         if (data.error) {
           setValues({ ...values, error: data.error})
         } else {

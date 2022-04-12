@@ -38,9 +38,9 @@ const getComment = async(commentID) => {
 }
  
 // Creates a new comment
-const create = async (comment, creds) => {
+const create = async (comment, creds, userID) => {
   try {
-      let response = await fetch('/api/comments/', {
+      let response = await fetch('/api/comment/' + userID, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
