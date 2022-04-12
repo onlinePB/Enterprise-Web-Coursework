@@ -25,46 +25,45 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Event({ match }){
-    const classes = useStyles()
-    const [event, setEvent] = useState([])
-    const [user, setUser] = useState({})
-    const [redirect, setRedirect] = useState(false)
+  const classes = useStyles()
+  const [event, setEvent] = useState([])
+  const [user, setUser] = useState({})
+  const [redirect, setRedirect] = useState(false)
 
-    useEffect(() => {
-
-      const abortController = new AbortController()
-      const signal = abortController.signal
-
-        getEvent(match.params.eventID).then((data) => {
+  useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
+      
+    // Gets the event from the database
+    getEvent(match.params.eventID).then((data) => {
+        if (data && data.error) {
+          console.log(data.error)
+        } else {
+          setEvent(data)
+        }
+    })
+        
+    // Check to see if the user is an admin
+    if (auth.isAuthenticated() != false){
+        read({
+          userId: auth.isAuthenticated().user._id
+        }, {t: auth.isAuthenticated().token}, signal).then((data) => {
           if (data && data.error) {
-            console.log(data.error)
+            console.log("error")
           } else {
-            setEvent(data)
+            setUser(data)
           }
         })
-        
-        // Check to see if the user is an admin
-        if (auth.isAuthenticated() != false){
-          read({
-            userId: auth.isAuthenticated().user._id
-          }, {t: auth.isAuthenticated().token}, signal).then((data) => {
-            if (data && data.error) {
-              console.log("error")
-            } else {
-              setUser(data)
-            }
-          })
-        } else {
-          setUser({"admin":false})
-        }
+    } else {
+      setUser({"admin":false})
+    }
 
-        return function cleanup(){
-          abortController.abort()
-        }
+    return function cleanup(){
+      abortController.abort()
+    }      
+  }, [])
 
-        
-    }, [])
-
+  // Deletes the event, ran when an admin clicks the delete button
   function deleteEvent(eventID){
       remove(eventID, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) =>{
           if (data.error) {
@@ -76,6 +75,7 @@ export default function Event({ match }){
       })
   }
 
+  // Dynamically changes the button text depending on whether the user is attending the event or not
   var buttonText = ""
   if(event.attendees && auth.isAuthenticated()){
     if(event.attendees.includes(auth.isAuthenticated().user._id)){
@@ -85,6 +85,7 @@ export default function Event({ match }){
     }
   }
 
+  // Add or remove the user from the attending list
   function toggleAttend(){
     if(event.attendees){
       var increment = 0
@@ -99,6 +100,7 @@ export default function Event({ match }){
     }
   }
 
+  // Update the event with the new attending list and attending count
   function updateAttendance(increment) {
     const eventUpdate = {
       title: event.title,
@@ -116,11 +118,13 @@ export default function Event({ match }){
     })
   }
   
-  
+  // Redirect the user to the events page if this event has been deleted
   if (redirect) {
     return <Redirect to='/events/'/>
   }
-    return (<>
+
+  // Render the page
+  return (<>
       <Paper elevation={4} className={classes.panel}>
         <Typography variant="h6" className={classes.commentTitle}>
             {event.title}
@@ -143,6 +147,5 @@ export default function Event({ match }){
         </>}
       </Paper>
       }
-    </>)
-    
+  </>)  
 }
