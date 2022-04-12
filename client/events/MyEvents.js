@@ -42,30 +42,40 @@ export default function MyEvents() {
       }
     })}, [])
 
-    return (<>
-        <Paper className={classes.root} elevation={4}>
-            <Typography variant="h6" className={classes.title}>
-            Your Events
-            </Typography>
-            <List>
-                {events.map((item, i) => {
-                    if(item.attendees.includes(auth.isAuthenticated().user._id)){
-                        return (
-                            <Link to={"/event/" + item._id} key={i}>
-                                <ListItem>
-                                    <ListItemAvatar>
-                                        <Avatar>
-                                            <EventAvailableIcon color="secondary"/>
-                
-                                        </Avatar>
-                                    </ListItemAvatar>
-                                <ListItemText primary={item.title} secondary={new Date(item.start).toDateString()} />  
-                                </ListItem>
-                            </Link>
-                        )
-                    }
-                })}
-            </List>
-        </Paper>
-    </>)
+    if(auth.isAuthenticated()){
+        return (<>
+            <Paper className={classes.root} elevation={4}>
+                <Typography variant="h6" className={classes.title}>
+                Your Events
+                </Typography>
+                <List>
+                    {events.map((item, i) => {
+                        if(item.attendees.includes(auth.isAuthenticated().user._id)){
+                            return (
+                                <Link to={"/event/" + item._id} key={i}>
+                                    <ListItem>
+                                        <ListItemAvatar>
+                                            <Avatar>
+                                                <EventAvailableIcon color="secondary"/>
+                    
+                                            </Avatar>
+                                        </ListItemAvatar>
+                                    <ListItemText primary={item.title} secondary={new Date(item.start).toDateString()} />  
+                                    </ListItem>
+                                </Link>
+                            )
+                        }
+                    })}
+                </List>
+            </Paper>
+        </>)
+    } else {
+        return (<>
+            <Paper className={classes.root} elevation={4}>
+                <Typography variant="h6" className={classes.title}>
+                    Please log in to view your events.
+                </Typography>
+            </Paper>
+        </>)
+    }
 }
