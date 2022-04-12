@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 
+// This schema models a comment record
 const CommentSchema = new mongoose.Schema({
     // Comment body - the message contained in the comment
     message:{
@@ -33,6 +34,7 @@ const CommentSchema = new mongoose.Schema({
         default: "root",
     },
 
+    // The display name of the author of the comment
     authorName:{
         type: String,
         trim: true,
