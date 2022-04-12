@@ -100,12 +100,12 @@ export default function Event({ match }){
   }
 
   function updateAttendance() {
-    const event = {
+    const eventUpdate = {
       title: event.title,
       description: event.description,
       attendees: event.attendees
     }
-    update(event._id, auth.isAuthenticated().token, auth.isAuthenticated().user._id, event).then((data) => {
+    update(event._id, auth.isAuthenticated().token, auth.isAuthenticated().user._id, eventUpdate).then((data) => {
       if (data && data.error) {
         //setValues({...values, error: data.error})
       } else {
