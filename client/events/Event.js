@@ -87,8 +87,8 @@ export default function Event({ match }){
           }
       })
   }
-  console.log(event.attendees[0])
-  console.log(event.attendees["0"])
+  console.log(event.attendees)
+  
   if (redirect) {
     return <Redirect to='/events/'/>
   }
