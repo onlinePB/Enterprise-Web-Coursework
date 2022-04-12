@@ -90,7 +90,6 @@ export default function Edit({ match }) {
 
     // Redirect the user to the comments page once they're done editing
     if (redirect) {
-        document.location.reload()
         return <Redirect to='/comments/'/>
     }
 
