@@ -34,6 +34,10 @@ const useStyles = makeStyles(theme => ({
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle
   },
+
+  panel: {
+    margin: `0px 0px 10px 0px`
+  }
 }))
 
 export default function Event({ match }){
@@ -133,7 +137,7 @@ export default function Event({ match }){
     return <Redirect to='/events/'/>
   }
     return (<>
-      <Paper elevation={4}>
+      <Paper elevation={4} className={classes.panel}>
         <Typography variant="h6" className={classes.commentTitle}>
             {event.title}
         </Typography>
@@ -141,7 +145,7 @@ export default function Event({ match }){
           {new Date(event.start).toDateString()}
         </Typography>
       </Paper>
-      <Paper elevation={4}>
+      <Paper elevation={4} className={classes.panel}>
         <Typography variant="body1">
           {event.description}
         </Typography>
