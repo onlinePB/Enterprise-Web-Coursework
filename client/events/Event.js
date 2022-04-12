@@ -132,7 +132,7 @@ export default function Event({ match }){
 
   // Render the page
   return (<>
-    <Paper elevation={4} className={classes.panel}>
+    <Paper elevation={4} className={classes.root}>
       <Typography variant="h6" className={classes.title}>
         {event.title}
       </Typography>
@@ -142,14 +142,14 @@ export default function Event({ match }){
       </Typography>
     </Paper>
 
-    <Paper elevation={4} className={classes.panel}>
+    <Paper elevation={4} className={classes.root}>
       <Typography variant="body1">
         {event.description}
       </Typography>
     </Paper>
       
     {auth.isAuthenticated() &&
-      <Paper elevation={4}>
+      <Paper elevation={4} className={classes.root}>
         <Button color="secondary" onClick={() => toggleAttend()} variant="contained" className={classes.submit}>{buttonText}</Button>
         {user.admin && <>
           <Button color="secondary" onClick={() => deleteEvent(event._id)} variant="contained" className={classes.submit}>Delete</Button>
