@@ -95,10 +95,23 @@ export default function Event({ match }){
       } else {
         event.attendees.push(auth.isAuthenticated().user._id)
       }
-    
-      console.log(event.attendees)
-
+      updateAttendance()
     }
+  }
+
+  function updateAttendance() {
+    const event = {
+      title: event.title,
+      description: event.description,
+      attendees: event.attendees
+    }
+    update(event._id, auth.isAuthenticated().token, auth.isAuthenticated().user._id, event).then((data) => {
+      if (data && data.error) {
+        //setValues({...values, error: data.error})
+      } else {
+        //setValues({...values, userId: data._id, redirectToProfile: true})
+      }
+    })
   }
   
   

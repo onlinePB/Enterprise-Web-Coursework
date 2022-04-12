@@ -55,9 +55,27 @@ const remove = async (eventID, credentials, userID) => {
     }
   }
 
+  const update = async (eventID, credentials, userID, data) => {
+    try {
+      let response = await fetch('/api/event/' + userID + "/" + eventID, {
+        method: 'PUT',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + credentials.t
+        },
+        body: JSON.stringify(data)
+      })
+      return await response.json()
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
 export{
     list,
     getEvent,
     remove,
-    create
+    create,
+    update
 }
