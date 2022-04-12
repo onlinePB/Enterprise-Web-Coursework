@@ -19,6 +19,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import {create} from './api-events'
 import TextField from '@material-ui/core/TextField'
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -154,6 +155,7 @@ export default function Events() {
                               </span>
                             </>}
                         </ListItem>
+                        <Divider variant="inset" component="li" />
                     </Link>)
                 })}
             </List>
