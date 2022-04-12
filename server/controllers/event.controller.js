@@ -33,7 +33,7 @@ const list = async (req, res) => {
 const read = (req, res) => {
     let event = req.eventProfile
     event.views = event.views + 1
-    await event.save()
+    event.save()
     return res.json(req.eventProfile)
 }
 
