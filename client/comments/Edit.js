@@ -7,13 +7,14 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
 import { makeStyles } from '@material-ui/core/styles'
-import {create} from './api-user.js'
+import {update} from './api-comments'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import {Link} from 'react-router-dom'
+import auth from './../auth/auth-helper'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -44,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 export default function Edit() {
     const [comment, setComment] = useState([])
     const [values, setValues] = useState({
-      message: '',
+      message: comment.message,
       author: '',
       authorName: ''
     })
@@ -66,17 +67,17 @@ export default function Edit() {
     }
 
   const clickSubmit = () => {
-    const user = {
-      name: values.name || undefined,
-      email: values.email || undefined,
-      password: values.password || undefined
+    const commentUpdate = {
+        message: values.message || undefined,
+        author: auth.isAuthenticated().user._id || undefined,
+        authorName: auth.isAuthenticated().user.name || undefined
     }
-    create(user).then((data) => {
-      if (data.error) {
-        setValues({ ...values, error: data.error})
-      } else {
-        setValues({ ...values, error: '', open: true})
-      }
+    update(comment._id, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id, commentUpdate).then((data) => {
+        if (data && data.error) {
+          //setValues({...values, error: data.error})
+        } else {
+          //setValues({...values, userId: data._id, redirectToProfile: true})
+        }
     })
   }
 
@@ -84,21 +85,17 @@ export default function Edit() {
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h6" className={classes.title}>
-            Sign Up
+            Edit:
           </Typography>
-          <TextField id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/><br/>
-          <TextField id="email" type="email" label="Email" className={classes.textField} value={values.email} onChange={handleChange('email')} margin="normal"/><br/>
-          <TextField id="password" type="password" label="Password" className={classes.textField} value={values.password} onChange={handleChange('password')} margin="normal"/>
-          <br/> {
-            values.error && (<Typography component="p" color="error">
-              <Icon color="error" className={classes.error}>error</Icon>
-              {values.error}</Typography>)
-          }
+          
+          <TextField multiline fullWidth id="message" variant="outlined" label="Comment:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"/><br/>
+
         </CardContent>
         <CardActions>
           <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
         </CardActions>
       </Card>
+
       <Dialog open={values.open} disableBackdropClick={true}>
         <DialogTitle>New Account</DialogTitle>
         <DialogContent>
