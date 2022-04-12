@@ -19,6 +19,7 @@ const create = async (req, res) => {
     }
 }
 
+// Gets all comments
 const list = async (req, res) => {
     try {
       let comment = await Comments.find({replyTo: "root"}).select('_id message author replyTo created authorName')
@@ -51,6 +52,7 @@ const getCommentByID = async(req, res, next, id) => {
     }
 }
 
+// Gets all replies to a particular comment
 const listReplies = async(req, res) => {
     try{
         let comment = req.usercomment
@@ -95,6 +97,7 @@ const remove = async(req, res) => {
     }
 }
 
+// Returns a particular comment
 const read = (req, res) => {
     return res.json(req.usercomment)
   }
