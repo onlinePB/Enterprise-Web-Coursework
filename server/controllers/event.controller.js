@@ -21,7 +21,7 @@ const create = async (req, res) => {
 
 const list = async (req, res) => {
     try {
-      let event = await Events.find().select('_id title description start views attendees')
+      let event = await Events.find().select('_id title description start views attendees attendeesCount')
       res.json(event)
     } catch (err) {
       return res.status(400).json({
