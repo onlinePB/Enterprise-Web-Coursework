@@ -126,7 +126,7 @@ export default function Event({ match }){
   // Render the page
   return (<>
       <Paper elevation={4} className={classes.panel}>
-        <Typography variant="h6" className={classes.commentTitle}>
+        <Typography variant="h6" className={classes.title}>
             {event.title}
         </Typography>
         <Typography variant="subtitle1" gutterBottom>
