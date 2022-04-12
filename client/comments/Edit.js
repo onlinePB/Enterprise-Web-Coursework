@@ -42,6 +42,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Edit() {
+    const classes = useStyles()
     const [comment, setComment] = useState([])
     const [values, setValues] = useState({
       message: comment.message,
