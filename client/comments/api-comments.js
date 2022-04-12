@@ -71,6 +71,24 @@ const remove = async (commentID, credentials, userID) => {
     console.log(err)
   }
 }
+
+// Updates a comment
+const update = async (commentID, credentials, userID, data) => {
+  try {
+    let response = await fetch('/api/event/' + userID + "/" + eventID, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      },
+      body: JSON.stringify(data)
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
    
 export {
   list,
