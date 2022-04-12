@@ -75,7 +75,7 @@ const remove = async (commentID, credentials, userID) => {
 // Updates a comment
 const update = async (commentID, credentials, userID, data) => {
   try {
-    let response = await fetch('/api/event/' + userID + "/" + eventID, {
+    let response = await fetch('/api/comment/' + userID + "/" + commentID, {
       method: 'PUT',
       headers: {
         'Accept': 'application/json',
@@ -95,6 +95,7 @@ export {
   create,
   remove,
   listReplies,
-  getComment
+  getComment,
+  update
 }
   
