@@ -35,7 +35,7 @@ const MainRouter = () => {
         <Route path="/event/:eventID" component={Event}/>
         <Route path="/myevents" component={MyEvents}/>
         <Route path="/edit/:commentID" component={Edit}/>
-        <Route path="/eventEdit/:eventID" component={EventEdit}/>
+        <Route path="/editevent/:eventID" component={EventEdit}/>
       </Switch>
     </div>)
 }

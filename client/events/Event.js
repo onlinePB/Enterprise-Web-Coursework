@@ -7,6 +7,7 @@ import auth from './../auth/auth-helper'
 import {getEvent, remove, update} from './api-events'
 import {read} from './../user/api-user'
 import {Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -157,6 +158,7 @@ export default function Event({ match }){
       <Paper elevation={4} className={classes.root}>
         <Button color="secondary" onClick={() => toggleAttend()} variant="contained" className={classes.submit}>{buttonText}</Button>
         {user.admin && <>
+          <Button color="secondary" component={Link} to={"/editevent/" + event._id}>Edit</Button>
           <Button color="secondary" onClick={() => deleteEvent(event._id)} variant="contained" className={classes.submit}>Delete</Button>
         </>}
       </Paper>
