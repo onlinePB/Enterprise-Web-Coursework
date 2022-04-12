@@ -1,3 +1,4 @@
+// Gets all events
 const list = async (signal) => {
     try {
       let response = await fetch('/api/events/', {
@@ -10,6 +11,7 @@ const list = async (signal) => {
     }
 }
 
+// Gets a particular event by it's ID
 const getEvent = async(eventID) => {
     try {
       let response = await fetch('/api/event/' + eventID, {
@@ -22,6 +24,7 @@ const getEvent = async(eventID) => {
     }
 }
 
+// Deletes a particular event
 const remove = async (eventID, credentials, userID) => {
     try {
       let response = await fetch('/api/event/' + userID + "/" + eventID, {
@@ -36,9 +39,10 @@ const remove = async (eventID, credentials, userID) => {
     } catch(err) {
       console.log(err)
     }
-  }
+}
 
-  const create = async (event, creds, userID) => {
+// Creates a new event
+const create = async (event, creds, userID) => {
     try {
         let response = await fetch('/api/events/' + userID, {
           method: 'POST',
@@ -53,9 +57,10 @@ const remove = async (eventID, credentials, userID) => {
     } catch(err) {
       console.log(err)
     }
-  }
+}
 
-  const update = async (eventID, credentials, userID, data) => {
+// Update an existing event
+const update = async (eventID, credentials, userID, data) => {
     try {
       let response = await fetch('/api/event/' + userID + "/" + eventID, {
         method: 'PUT',
@@ -70,7 +75,7 @@ const remove = async (eventID, credentials, userID) => {
     } catch(err) {
       console.log(err)
     }
-  }
+}
 
 export{
     list,
