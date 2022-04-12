@@ -58,7 +58,7 @@ export default function MyEvents() {
     return (<>
         <Paper className={classes.root} elevation={4}>
             <Typography variant="h6" className={classes.title}>
-            Events
+            Your Events
             </Typography>
             <List>
                 {events.map((item, i) => {
