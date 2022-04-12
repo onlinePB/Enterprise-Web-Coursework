@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography'
 import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import EventIcon from '@material-ui/icons/Event';
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import {Link} from 'react-router-dom'
 import {list} from './api-events'
 import Button from '@material-ui/core/Button'
@@ -134,7 +135,19 @@ export default function Users() {
                             <ListItem>
                                 <ListItemAvatar>
                                     <Avatar>
-                                        <EventIcon />
+                                        {auth.isAuthenticated() && <>
+                                          {item.attendees.includes(auth.isAuthenticated().user._id) &&
+                                            <EventIcon />
+                                          }
+                                          {!item.attendees.includes(auth.isAuthenticated().user._id) &&
+                                            <EventAvailableIcon />
+                                          }
+                                        </>}
+                                        
+                                        {!auth.isAuthenticated() &&
+                                          <EventIcon />
+                                        }
+                                        
                                     </Avatar>
                                 </ListItemAvatar>
                             <ListItemText primary={item.title} secondary={new Date(item.start).toDateString()} />
