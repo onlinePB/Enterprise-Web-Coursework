@@ -14,6 +14,7 @@ import Comments from './comments/Comments'
 import Replies from './comments/Replies'
 import Events from './events/Events'
 import Event from './events/Event'
+import MyEvents from './events/MyEvents'
 
 const MainRouter = () => {
     return (<div>
@@ -30,6 +31,7 @@ const MainRouter = () => {
         <Route path="/replies/:commentID" component={Replies}/>
         <Route path="/events" component={Events}/>
         <Route path="/event/:eventID" component={Event}/>
+        <Route path="/myevents" component={MyEvents}/>
       </Switch>
     </div>)
 }
