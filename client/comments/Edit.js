@@ -62,25 +62,29 @@ export default function Edit({ match }) {
         setValues({ ...values, [message]: event.target.value })
     }
 
-  const clickSubmit = () => {
-    const commentUpdate = {
-        message: values.message || undefined,
-        author: auth.isAuthenticated().user._id || undefined,
-        authorName: auth.isAuthenticated().user.name || undefined
-    }
-    update(comment._id, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id, commentUpdate).then((data) => {
-        if (data && data.error) {
-          //setValues({...values, error: data.error})
-        } else {
-          //setValues({...values, userId: data._id, redirectToProfile: true})
+    // When the user clicks submit, this function is called
+    const clickSubmit = () => {
+        const commentUpdate = {
+            message: values.message || undefined,
+            author: auth.isAuthenticated().user._id || undefined,
+            authorName: auth.isAuthenticated().user.name || undefined
         }
-    })
-    setRedirect(true)
-  }
 
-  const cancel = () => {
-    setRedirect(true)
-  }
+        // Update the comment on the database
+        update(comment._id, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id, commentUpdate).then((data) => {
+            if (data && data.error) {
+                //setValues({...values, error: data.error})
+            } else {
+                //setValues({...values, userId: data._id, redirectToProfile: true})
+            }
+        })
+
+        setRedirect(true)
+    }
+
+    const cancel = () => {
+        setRedirect(true)
+    }
 
     var editTitle = "Edit: \"" + comment.message + "\""
     // Redirect the user to the comments page once they're done editing

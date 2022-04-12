@@ -9,7 +9,7 @@ const router = express.Router()
 // POST: Creates a new comment
 router.route('/api/comments')
     .get(commentCtrl.list)
-    .post(authCtrl.requireSignin, commentCtrl.create)
+    .post(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.create)
 
 // GET: Gets a particular comment using it's ID
 router.route('/api/comments/:commentID')
