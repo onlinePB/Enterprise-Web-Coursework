@@ -87,6 +87,7 @@ export default function Event({ match }){
           }
       })
   }
+  console.log(event.attendees)
   if (redirect) {
     return <Redirect to='/events/'/>
   }
@@ -103,11 +104,6 @@ export default function Event({ match }){
         <Typography variant="body1">
           {event.description}
         </Typography>
-        {event.attendees.map((item, i) => {
-        <Typography variant="body1">
-          {item}
-        </Typography>
-        })}
       </Paper>
       
       {auth.isAuthenticated() &&
