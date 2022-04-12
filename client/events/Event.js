@@ -103,12 +103,19 @@ export default function Event({ match }){
         <Typography variant="body1">
           {event.description}
         </Typography>
+        <Typography variant="body1">
+          {event.attendees}
+        </Typography>
       </Paper>
-      {user.admin && <>
+      
+      {auth.isAuthenticated() &&
       <Card>
-        <Button color="secondary" onClick={() => deleteEvent(event._id)} variant="contained" className={classes.submit}>Delete</Button>
+        <Button color="secondary" variant="contained" className={classes.submit}>Attend</Button>
+        {user.admin && <>
+          <Button color="secondary" onClick={() => deleteEvent(event._id)} variant="contained" className={classes.submit}>Delete</Button>
+        </>}
       </Card>
-      </>}
+      }
     </>)
     
 }
