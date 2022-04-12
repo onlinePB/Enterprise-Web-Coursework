@@ -89,13 +89,20 @@ export default function Event({ match }){
   function toggleAttend(){
     if(event.attendees){
       var increment = 0
+      // If the user is already attending the event
       if (event.attendees.includes(auth.isAuthenticated().user._id)){
+        // Remove them from the event
         event.attendees.splice(event.attendees.indexOf(auth.isAuthenticated().user._id), 1);
         increment = -1
+
+      // If the user is not attending the event currently
       } else {
+        // Add them to the attendees list
         event.attendees.push(auth.isAuthenticated().user._id)
         increment = 1
       }
+
+      // Save the attendees list to the database
       updateAttendance(increment)
     }
   }
