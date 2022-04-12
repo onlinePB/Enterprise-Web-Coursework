@@ -22,6 +22,10 @@ const useStyles = makeStyles(theme => ({
 
   panel: {
     margin: `0px 0px 10px 0px`
+  },
+
+  submit: {
+    marginRight: theme.spacing(2)
   }
 }))
 
