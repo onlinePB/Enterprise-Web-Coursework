@@ -146,6 +146,7 @@ export default function Replies({ match }){
                                         
                                         {auth.isAuthenticated().user._id == item.author &&
                                             <>  
+                                                <Button component={Link} to={"/edit/" + item._id} size="small">Edit</Button>
                                                 <Button size="small" onClick={() => deleteReply(item._id)}>Delete</Button> 
                                             </>                   
                                         }
