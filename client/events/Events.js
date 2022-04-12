@@ -91,7 +91,7 @@ export default function Users() {
     console.log("values.desc: " + values.description)
     console.log("event: " + JSON.stringify(newEvent))
     
-    create(newEvent, {t: auth.isAuthenticated().token}, auth.isAuthenticated()).then((data) => {
+    create(newEvent, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error})
       } else {
