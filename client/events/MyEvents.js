@@ -31,6 +31,7 @@ export default function MyEvents() {
     const abortController = new AbortController()
     const signal = abortController.signal
 
+    // Get all the events
     list(signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
@@ -42,6 +43,7 @@ export default function MyEvents() {
       }
     })}, [])
 
+    // Render the page if the user is logged in, else render an alert telling them to log in
     if(auth.isAuthenticated()){
         return (<>
             <Paper className={classes.root} elevation={4}>
