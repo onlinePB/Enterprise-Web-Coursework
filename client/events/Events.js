@@ -137,10 +137,10 @@ export default function Users() {
                                     <Avatar>
                                         {auth.isAuthenticated() && <>
                                           {item.attendees.includes(auth.isAuthenticated().user._id) &&
-                                            <EventIcon />
+                                            <EventAvailableIcon color="success"/>
                                           }
                                           {!item.attendees.includes(auth.isAuthenticated().user._id) &&
-                                            <EventAvailableIcon />
+                                            <EventIcon />
                                           }
                                         </>}
                                         
