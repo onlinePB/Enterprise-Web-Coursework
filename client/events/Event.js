@@ -77,7 +77,7 @@ export default function Event({ match }){
         
     }, [])
 
-    function deleteEvent(eventID){
+  function deleteEvent(eventID){
       remove(eventID, {t: auth.isAuthenticated().token}, auth.isAuthenticated().user._id).then((data) =>{
           if (data.error) {
               console.log(data.error)
@@ -87,10 +87,15 @@ export default function Event({ match }){
           }
       })
   }
-  if(event.attendees){
-    console.log(event.attendees)
-    console.log(event.attendees[0])
+
+  function toggleAttend(){
+    if(event.attendees){
+      if (event.attendees.includes("testVal"))
+        console.log("it worked")
+
+    }
   }
+  
   
   if (redirect) {
     return <Redirect to='/events/'/>
@@ -112,7 +117,7 @@ export default function Event({ match }){
       
       {auth.isAuthenticated() &&
       <Card>
-        <Button color="secondary" variant="contained" className={classes.submit}>Attend</Button>
+        <Button color="secondary" onClick={() => toggleAttend()} variant="contained" className={classes.submit}>Attend</Button>
         {user.admin && <>
           <Button color="secondary" onClick={() => deleteEvent(event._id)} variant="contained" className={classes.submit}>Delete</Button>
         </>}
