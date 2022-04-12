@@ -7,12 +7,6 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import {update, getComment} from './api-comments'
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogContentText from '@material-ui/core/DialogContentText'
-import DialogTitle from '@material-ui/core/DialogTitle'
-import {Link} from 'react-router-dom'
 import auth from './../auth/auth-helper'
 import {Redirect} from 'react-router-dom'
 
@@ -88,6 +82,7 @@ export default function Edit({ match }) {
     setRedirect(true)
   }
 
+    var editTitle = "Edit: \"" + comment.message + "\""
     // Redirect the user to the comments page once they're done editing
     if (redirect) {
         return <Redirect to='/comments/'/>
@@ -97,7 +92,7 @@ export default function Edit({ match }) {
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h6" className={classes.title}>
-            Edit:
+            {editTitle}
           </Typography>
           
           <TextField multiline fullWidth id="message" variant="outlined" label="New Message:" className={classes.textField} value={values.message} onChange={handleChange('message')} margin="normal"/><br/>
