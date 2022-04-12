@@ -103,9 +103,11 @@ export default function Event({ match }){
         <Typography variant="body1">
           {event.description}
         </Typography>
+        {event.attendees.map((item, i) => {
         <Typography variant="body1">
-          {event.attendees}
+          {item}
         </Typography>
+        })}
       </Paper>
       
       {auth.isAuthenticated() &&
