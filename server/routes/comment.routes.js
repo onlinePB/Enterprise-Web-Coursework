@@ -21,6 +21,7 @@ router.route('/api/replies/:commentID')
 
 // DELETE: Deletes a comment from the database
 // GET: Gets a particular comment using it's ID
+// PUT: Updates a comment
 router.route('/api/comment/:userID/:commentID')
     .get(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.read)
     .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.remove)
