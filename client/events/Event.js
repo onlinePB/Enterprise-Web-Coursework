@@ -141,12 +141,14 @@ export default function Event({ match }){
       {auth.isAuthenticated() &&
       <Card>
         <Button color="secondary" onClick={() => toggleAttend()} variant="contained" className={classes.submit}>
-          {event.attendees.includes(auth.isAuthenticated().user._id) &&
-            Cancel
-          }
-          {!event.attendees.includes(auth.isAuthenticated().user._id) &&
-            Attend
-          }
+          {event.attendees && <>
+            {event.attendees.includes(auth.isAuthenticated().user._id) &&
+              Cancel
+            }
+            {!event.attendees.includes(auth.isAuthenticated().user._id) &&
+              Attend
+            }
+          </>}
         </Button>
         {user.admin && <>
           <Button color="secondary" onClick={() => deleteEvent(event._id)} variant="contained" className={classes.submit}>Delete</Button>
