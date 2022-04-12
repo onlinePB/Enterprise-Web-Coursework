@@ -93,7 +93,7 @@ export default function Event({ match }){
   }
 
   var buttonText = ""
-  if(event.attendees){
+  if(event.attendees && auth.isAuthenticated()){
     if(event.attendees.includes(auth.isAuthenticated().user._id)){
       buttonText = "Cancel Attendance"
     } else {
