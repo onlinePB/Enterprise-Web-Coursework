@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Edit() {
+export default function Edit({ match }) {
     const classes = useStyles()
     const [comment, setComment] = useState([])
     const [values, setValues] = useState({
