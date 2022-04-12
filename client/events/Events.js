@@ -83,15 +83,15 @@ export default function Users() {
   }
 
   const clickSubmit = () => {
-    const event = {
-      title: values.title,
-      description: values.description
+    const newEvent = {
+      title: values.title || undefined,
+      description: values.description || undefined,
     }
     console.log("values.title: " + values.title)
     console.log("values.desc: " + values.description)
-    console.log("event: " + event)
+    console.log("event: " + newEvent)
     
-    create(event, {t: auth.isAuthenticated().token}, auth.isAuthenticated()).then((data) => {
+    create(newEvent, {t: auth.isAuthenticated().token}, auth.isAuthenticated()).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error})
       } else {
