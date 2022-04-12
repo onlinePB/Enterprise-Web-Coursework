@@ -110,8 +110,6 @@ export default function Replies({ match }){
         })
     }
 
-
-    console.log(comment)
     return (<>
               <Card>
                 <CardHeader title={comment.authorName} subheader={new Date(comment.created).toDateString()} avatar={
